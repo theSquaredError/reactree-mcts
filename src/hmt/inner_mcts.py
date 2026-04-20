@@ -35,9 +35,18 @@ class _MCTSChatAdapter:
         self._base = llm_agent.llm
 
     def chat(self, messages: List[Dict[str, Any]]) -> Dict[str, float]:
+        """
+        Generate an action using free-text LLM generation then fuzzy-match to
+        available_commands.  Mirrors mcts/algorithm.py llm_inference() but
+        replaces guidance.select(100+ items) — which always returns 'done' on
+        small 8B models — with guidance.gen() + best-overlap matching.
+
+        Returns {matched_command: 1.0} or {} (llm_inference will retry / random).
+        """
         import ast
         import re as _re
 
+        # ---- 1. Extract available_commands from the last user message ----
         available_commands: List[str] = []
         for msg in reversed(messages):
             if msg["role"] == "user":
@@ -51,15 +60,61 @@ class _MCTSChatAdapter:
         if not available_commands:
             return {}
 
-        prompt_str = "\n".join(msg["content"] for msg in messages) + "\n"
+        # ---- 2. Build prompt string from messages ----
+        prompt_parts: List[str] = []
+        for msg in messages:
+            role = msg.get("role", "")
+            content = msg.get("content", "")
+            if role == "system":
+                prompt_parts.append(content)
+            elif role == "user":
+                prompt_parts.append(f"User: {content}")
+            elif role == "assistant":
+                prompt_parts.append(f"Assistant: {content}")
+        prompt_parts.append("Assistant: ")
+        prompt_str = "\n".join(prompt_parts)
 
+        # ---- 3. Free-text generation (reliable on 8B models, unlike select(100+)) ----
         try:
             import guidance
-            result = self._base + prompt_str + guidance.select(available_commands, name="mcts_action")
-            return {result["mcts_action"]: 1.0}
+            lm = self._base + prompt_str
+            lm += guidance.gen(stop="\n", name="action_text", max_tokens=60, temperature=0)
+            generated: str = (lm["action_text"] or "").strip()
         except Exception as exc:
-            logger.warning("_MCTSChatAdapter.chat failed: %s", exc)
+            logger.warning("_MCTSChatAdapter.chat gen failed: %s", exc)
             return {}
+
+        if not generated:
+            return {}
+
+        # ---- 4. Exact match first ----
+        gen_lower = generated.lower()
+        for cmd in available_commands:
+            if cmd.lower() == gen_lower:
+                logger.debug("MCTS chat exact match: '%s'", cmd)
+                return {cmd: 1.0}
+
+        # ---- 5. Fuzzy word-overlap match (same idea as mcts/algorithm.py filter) ----
+        gen_words = set(gen_lower.split())
+        best_cmd: Optional[str] = None
+        best_overlap = 0
+        for cmd in available_commands:
+            cmd_words = set(cmd.lower().split())
+            overlap = len(gen_words & cmd_words)
+            if overlap > best_overlap:
+                best_overlap = overlap
+                best_cmd = cmd
+
+        # Require at least one meaningful word overlap
+        if best_cmd and best_overlap >= 1:
+            logger.debug(
+                "MCTS chat fuzzy match: generated='%s' → matched='%s' (overlap=%d)",
+                generated, best_cmd, best_overlap,
+            )
+            return {best_cmd: 1.0}
+
+        logger.debug("MCTS chat no match for generated='%s'", generated)
+        return {}
 
 
 # ---------------------------------------------------------------------------

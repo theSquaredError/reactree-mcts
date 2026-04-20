@@ -15,6 +15,7 @@ virtualhome/simulation/unity_simulator/__pycache__/*
 *.pyc
 src/alfred/__pycache__/*
 src/wah/__pycache__/*
+output/*
 outputs/*
 essential_code.zip
 dataset/*
