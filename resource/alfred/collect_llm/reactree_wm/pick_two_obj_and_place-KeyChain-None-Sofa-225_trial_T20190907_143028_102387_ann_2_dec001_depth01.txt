@@ -1,0 +1,17 @@
+Your task is to: Gather up the keys and get them into the same place
+You are in the house, and you arrive at the living room, Looking quickly around the room, you see TVStand (1), Sofa (1, 2), SideTable (1), Shelf (1, 2, 3, 4, 5, 6), GarbageCan (1), Drawer (1), CoffeeTable (1), ArmChair (1).
+Think: First, I need to recall location of the keys.
+OK.
+Act: recall location of KeyChain
+You have not seen KeyChain before.
+Think: Now I need to find the key chain. The key chain is more likely to appear on ArmChair (1), CoffeeTable (1), Shelf (1-6), or in Drawer (1). I can check each place one by one, starting from ArmChair (1), until I find the key chain.
+OK.
+Act: go to ArmChair (1)
+You arrive at ArmChair (1). You see Window (2), RemoteControl (3), KeyChain (1), CreditCard (1), ArmChair (1). 
+Think: I find KeyChain (1). Now, I need to pick it up.
+OK.
+Act: pick up KeyChain (1)
+You pick up KeyChain (1). You see Window (2), RemoteControl (3), KeyChain (1), CreditCard (1), ArmChair (1). I am holding KeyChain (1) now.
+Think: Now I accomplish the goal.
+OK.
+Act: done

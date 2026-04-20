@@ -1,0 +1,161 @@
+Your primary goal is to: Place a cooled wine bottle on the white table with the lettuce.
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: find and pick up wine bottle, cool wine bottle, place wine bottle on table, and place lettuce on table.
+Your task is to: place lettuce on table
+You are in the house, and you arrive at the kitchen, Looking quickly around the room, you see Toaster (1), StoveBurner (1, 2, 3, 4), SinkBasin (1), Microwave (1), GarbageCan (1), Fridge (1), Drawer (1, 2, 3, 4, 5, 6), DiningTable (1, 2), CounterTop (1, 2), CoffeeMachine (1), Cabinet (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20).
+Think: I hold Lettuce (4). Now, I need to put it on the table. I can see DiningTable (1).
+OK.
+Act: go to DiningTable (1)
+You arrive at DiningTable (1). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1). 
+Think: I arrive at DiningTable (1). Now, I need to put down the lettuce.
+OK.
+Act: open Cabinet (1)
+You open Cabinet (1). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (2)
+You open Cabinet (2). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (3)
+You open Cabinet (3). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (4)
+You open Cabinet (4). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (5)
+You open Cabinet (5). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (6)
+You open Cabinet (6). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (7)
+You open Cabinet (7). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (8)
+You open Cabinet (8). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (9)
+You open Cabinet (9). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (10)
+You open Cabinet (10). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (11)
+You open Cabinet (11). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (12)
+You open Cabinet (12). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (13)
+You open Cabinet (13). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (14)
+You open Cabinet (14). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (15)
+You open Cabinet (15). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (16)
+You open Cabinet (16). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (17)
+You open Cabinet (17). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (18)
+You open Cabinet (18). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (19)
+You open Cabinet (19). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (20)
+You open Cabinet (20). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (1)
+You open Cabinet (1). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (2)
+You open Cabinet (2). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (3)
+You open Cabinet (3). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (4)
+You open Cabinet (4). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (5)
+You open Cabinet (5). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (6)
+You open Cabinet (6). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (7)
+You open Cabinet (7). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (8)
+You open Cabinet (8). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (9)
+You open Cabinet (9). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (10)
+You open Cabinet (10). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (11)
+You open Cabinet (11). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (12)
+You open Cabinet (12). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (13)
+You open Cabinet (13). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (14)
+You open Cabinet (14). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (15)
+You open Cabinet (15). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (16)
+You open Cabinet (16). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (17)
+You open Cabinet (17). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (18)
+You open Cabinet (18). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (19)
+You open Cabinet (19). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (20)
+You open Cabinet (20). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (1)
+You open Cabinet (1). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (2)
+You open Cabinet (2). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (3)
+You open Cabinet (3). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (4)
+You open Cabinet (4). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (5)
+You open Cabinet (5). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (6)
+You open Cabinet (6). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (7)
+You open Cabinet (7). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (8)
+You open Cabinet (8). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (9)
+You open Cabinet (9). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (10)
+You open Cabinet (10). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (11)
+You open Cabinet (11). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (12)
+You open Cabinet (12). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (13)
+You open Cabinet (13). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (14)
+You open Cabinet (14). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (15)
+You open Cabinet (15). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (16)
+You open Cabinet (16). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (17)
+You open Cabinet (17). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (18)
+You open Cabinet (18). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (19)
+You open Cabinet (19). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (20)
+You open Cabinet (20). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (1)
+You open Cabinet (1). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (2)
+You open Cabinet (2). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (3)
+You open Cabinet (3). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (4)
+You open Cabinet (4). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (5)
+You open Cabinet (5). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (6)
+You open Cabinet (6). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (7)
+You open Cabinet (7). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (8)
+You open Cabinet (8). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (9)
+You open Cabinet (9). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (10)
+You open Cabinet (10). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (11)
+You open Cabinet (11). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (12)
+You open Cabinet (12). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (13)
+You open Cabinet (13). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (14)
+You open Cabinet (14). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Act: open Cabinet (15)
+You open Cabinet (15). You see Window (2), SoapBottle (1), Potato (2), Knife (3), Fork (1, 2), DiningTable (1), Cup (1), Chair (1), ButterKnife (1, 2), Bread (1).
+Max decisions

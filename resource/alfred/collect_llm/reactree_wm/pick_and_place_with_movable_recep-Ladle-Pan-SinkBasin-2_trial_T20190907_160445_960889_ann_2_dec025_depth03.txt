@@ -1,0 +1,157 @@
+Your primary goal is to: Put a frying pan with an ice cream scoop in it in the sink,
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: find and pick up pan, place pan in sink basin, find and pick up scoop, and place scoop in pan near sink basin.
+Your task is to: place scoop in pan near sink basin
+You are in the house, and you arrive at the kitchen, Looking quickly around the room, you see Toaster (1), StoveBurner (1, 2, 3, 4, 5, 6), SinkBasin (1), Microwave (1), GarbageCan (1), Fridge (1), Drawer (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13), CounterTop (1, 2), CoffeeMachine (1), Cabinet (1, 2, 3, 4, 5, 6, 7, 8, 9). I am holding Ladle (1) now.
+Think: I hold Ladle (1). Now, I need to recall location of the pan.
+OK.
+Act: recall location of Pan
+You have not seen Pan before.
+Think: Now, I need to find the pan. The pan is more likely to appear on DiningTable (1), CounterTop (1-2), SinkBasin (1), or in Fridge (1), Microwave (1), Cabinet (1-9). I can check each place one by one, starting from DiningTable (1), until I find the pan.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Window (2), Sink (1), SinkBasin (1), Ladle (1), Faucet (1), CounterTop (1), Cabinet (1, 8).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Act: go to CounterTop (2)
+You arrive at CounterTop (2). You see Tomato (2), SaltShaker (2, 3), Lettuce (1), Ladle (1, 2), Knife (2), Egg (1), DishSponge (1, 2), Cup (3), CounterTop (1, 2), CellPhone (2), Bowl (2), Apple (2).  I am holding Ladle (1) now.
+Max decisions

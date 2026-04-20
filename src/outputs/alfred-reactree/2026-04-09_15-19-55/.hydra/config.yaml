@@ -1,0 +1,40 @@
+llm_agent:
+  model_name: meta-llama/Meta-Llama-3.1-8B
+  max_steps: 49
+  max_decisions: 99
+  max_depth: 20
+  use_accelerate_device_map: true
+  load_in_8bit: false
+  hf_auth_token: false
+  openai_api_key: false
+  random_seed: 0
+  agent_type: reactexpand
+  ic_ex_select_type: simple_static
+  working_memory: true
+  message_type: goal_information
+exp_type: collect_human
+task_planner: reactree
+dataset_type: alfred
+name: ${dataset_type}-${task_planner}
+out_dir: ${hydra:run.dir}
+dataset:
+  train_set: train
+  eval_set: valid_seen
+  collect_ex_root_dir: resource/debug
+  embedding_root_dir: ''
+  em_root_dir: ''
+  collect_dir: ''
+  task_selection_mode: true
+  check_success: false
+prompt:
+  num_examples: 6
+  sys_prompt_root_dir: resource/debug/sys_prompt
+  ic_ex_root_dir: ''
+alfred:
+  x_display: '1'
+  eval_portion_in_percent: 100
+  random_seed_for_eval_subset: 1
+  reflection_smp_per_task: 10
+  per_task_type_cllection: true
+  splits: alfred/data/splits/oct21.json
+  diverse_task: false

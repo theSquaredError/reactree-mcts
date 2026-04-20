@@ -1,0 +1,11 @@
+run:
+  dir: outputs/${name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+
+job_logging:
+  disable_existing_loggers: false
+  handlers: {}   # no Hydra-managed file handler; hmt.log is written by _configure_logging
+  root:
+    handlers: []
+  loggers:
+    alfred.alfred_env:
+      level: ERROR   # suppress expected simulator-rejection warnings (lastActionSuccess=False)

@@ -1,0 +1,21 @@
+Your primary goal is to: place a carton with a key in it on the chair
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: find and pick up carton, and place carton on chair.
+Your task is to: find and pick up carton
+You are in the house, and you arrive at the living room, Looking quickly around the room, you see Sofa (1), Ottoman (1), GarbageCan (1), Dresser (1, 2), Drawer (1, 2, 3, 4, 5, 6, 7, 8), CoffeeTable (1, 2), ArmChair (1).
+Think: First, I need to recall location of the carton.
+OK.
+Act: recall location of Box
+You have not seen Box before.
+Think: Now, I need to find the carton. The carton is more likely to appear on Sofa (1), Ottoman (1), Dresser (1-2), CoffeeTable (1-2), or in Drawer (1-8). I can check each place one by one, starting from Sofa (1), until I find the carton.
+OK.
+Act: go to Sofa (1)
+You arrive at Sofa (1). You see Sofa (1), Pillow (1), Newspaper (1, 2), Laptop (1). 
+Act: go to Ottoman (1)
+You arrive at Ottoman (1). You see Ottoman (1), Newspaper (3), Box (1). 
+Think: I find Box (1). Now, I need to pick it up.
+OK.
+Act: pick up Box (1)
+You pick up Box (1). You see Ottoman (1), CreditCard (1), Box (1). I am holding Box (1) now.
+Think: Now I accomplish the goal.
+OK.
+Act: done

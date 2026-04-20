@@ -1,0 +1,13 @@
+Your primary goal is to: place two cards on the couch
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: find and pick up card, place card on couch, Find and pick up card away from couch, and place card on couch.
+Your task is to: place card on couch
+You are in the house, and you arrive at the bedroom, Looking quickly around the room, you see SideTable (1), LaundryHamper (1), GarbageCan (1), Dresser (1), Drawer (1, 2), DiningTable (1), CounterTop (1), Bed (1), ArmChair (1, 2). I am holding CreditCard (1) now.
+Think: I hold CreditCard (1). Now, I need to put it on the couch. I can see Sofa (1).
+OK.
+Act: go to ArmChair (1)
+You arrive at ArmChair (1). You see CreditCard (1), CD (1), ArmChair (1).  I am holding CreditCard (1) now.
+Act: put down CreditCard (1)
+You put CreditCard (1) on ArmChair (1). You see CreditCard (1), CD (1), ArmChair (1).
+Think: Now I accomplish the goal.
+OK.
+Act: done

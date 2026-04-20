@@ -1,0 +1,53 @@
+exp_type: evaluate
+task_planner: hmt
+dataset_type: alfred
+
+name: ${dataset_type}-${task_planner}
+
+defaults:
+  - hydra: default.yaml
+  - llm_agent: default.yaml
+
+out_dir: ${hydra:run.dir}
+
+llm_agent:
+  model_name: 'meta-llama/Meta-Llama-3.1-8B'
+  agent_type: 'reactexpand' # 'react' or 'reactexpand'
+  ic_ex_select_type: 'simple_static' # 'static', 'simple_static', 'task_type', 'similarity'
+  working_memory: True
+  message_type: 'goal_information' # 'no_message' 'goal_information'
+  max_depth: 4   # maximum recursive decomposition depth
+
+dataset:
+  train_set: 'train'
+  eval_set: 'valid_seen'  # valid_seen, valid_unseen
+
+  collect_ex_root_dir: 'resource/debug'
+  embedding_root_dir: ''
+  em_root_dir: ''
+
+  collect_dir: ''
+
+  task_selection_mode: True
+  check_success: False
+
+prompt:
+  num_examples: 6
+  sys_prompt_root_dir: 'resource/debug/sys_prompt'
+  ic_ex_root_dir: ''
+
+alfred:
+  x_display: '1'
+  eval_portion_in_percent: 100  # 100 = full split; reduce for faster debug runs
+  random_seed_for_eval_subset: 1
+  reflection_smp_per_task: 10
+  per_task_type_cllection: True
+  splits: 'alfred/data/splits/oct21.json'
+  diverse_task: False
+
+# HMT-specific settings
+hmt:
+  outer_budget: 2           # outer MCTS simulations per decomposition state
+  inner_budget: 4       # inner MCTS simulations per subgoal
+  decomp_candidate_count: 3 # number of decomposition candidates to generate
+  gamma: 0.95               # discount factor for MCTS backup

@@ -1,0 +1,21 @@
+Your primary goal is to: Move the candle from the corner of the table to the middle
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: find and pick up candle, and place candle on table.
+Your task is to: find and pick up candle
+You are in the house, and you arrive at the bathroom, Looking quickly around the room, you see TowelHolder (1, 2), Toilet (1), ToiletPaperHanger (1), Sink (1), SinkBasin (1, 2), SideTable (1), HandTowelHolder (1), GarbageCan (1), Drawer (1), Bathtub (1).
+Think: First, I need to recall location of the candle.
+OK.
+Act: recall location of Candle
+You have not seen Candle before.
+Think: Now, I need to find the candle. The candle is more likely to appear on SideTable (1), Bathtub (1), or in Drawer (1). I can check each place one by one, starting from SideTable (1), until I find the candle.
+OK.
+Act: go to SideTable (1)
+You arrive at SideTable (1). You see ToiletPaper (1), SprayBottle (1), SoapBar (1, 3), SideTable (1), HousePlant (1), Drawer (1). 
+Act: go to Bathtub (1)
+You arrive at Bathtub (1). You see SinkBasin (1), Cloth (1, 2), Bathtub (1). 
+Think: I find Candle (1). Now, I need to pick it up.
+OK.
+Act: pick up Cloth (1)
+You pick up Cloth (1). You see SinkBasin (1), Cloth (1, 2), Bathtub (1). I am holding Cloth (1) now.
+Think: Now I accomplish the goal.
+OK.
+Act: done

@@ -1,0 +1,187 @@
+Your primary goal is to: Cut a slice of fruit and heat it. 
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: find and pick up knife, slice and pick up fruit, heat and pick up fruit, and place fruit on counter.
+Your task is to: slice and pick up fruit
+You are in the house, and you arrive at the kitchen, Looking quickly around the room, you see Toaster (1), StoveBurner (1, 2, 3, 4), SinkBasin (1), SideTable (1), Microwave (1), GarbageCan (1), Fridge (1), Drawer (1), DiningTable (1, 2, 3), CounterTop (1), CoffeeMachine (1), Cabinet (1, 2, 3, 4). I am holding Knife (1) now.
+Think: I hold Knife (1). Now, I need to recall location of the fruit.
+OK.
+Act: recall location of Apple
+You have not seen Apple before.
+Think: Now, I need to find the apple. The apple is more likely to appear on CounterTop (1), SinkBasin (1), or in Fridge (1), Microwave (1), Cabinet (1-4). I can check each place one by one, starting from CounterTop (1), until I find the apple.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1).  I am holding Knife (1) now.
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4).  I am holding Knife (1) now.
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Knife (1), Fridge (1). Fridge (1) is closed.  I am holding Knife (1) now.
+Act: open Fridge (1)
+You open Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: close Fridge (1)
+You close Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DishSponge (3), DiningTable (3). Microwave (1) is closed.  I am holding Knife (1) now.
+Act: open Microwave (1)
+You open Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). I am holding Knife (1) now.
+Think: I find Apple (1). Now, I need to slice it.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1).  I am holding Knife (1) now.
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4).  I am holding Knife (1) now.
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Knife (1), Fridge (1). Fridge (1) is closed.  I am holding Knife (1) now.
+Act: open Fridge (1)
+You open Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: close Fridge (1)
+You close Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open.  I am holding Knife (1) now.
+Act: put down Knife (1)
+You put Knife (1) on Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3).
+Act: turn on Microwave (1)
+
+Act: turn off Microwave (1)
+The Microwave (1) already turn off.
+Think: I slice Apple (1). Now, I need to pick up the apple.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1). 
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4). 
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Fridge (1). Fridge (1) is closed. 
+Act: open Fridge (1)
+You open Fridge (1). You see Fridge (1).
+Act: close Fridge (1)
+You close Fridge (1). You see Fridge (1).
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open. 
+Act: pick up Knife (1)
+You pick up Knife (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). I am holding Knife (1) now.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1).  I am holding Knife (1) now.
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4).  I am holding Knife (1) now.
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Knife (1), Fridge (1). Fridge (1) is closed.  I am holding Knife (1) now.
+Act: open Fridge (1)
+You open Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: close Fridge (1)
+You close Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open.  I am holding Knife (1) now.
+Act: put down Knife (1)
+You put Knife (1) on Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3).
+Act: turn on Microwave (1)
+
+Act: turn off Microwave (1)
+The Microwave (1) already turn off.
+Think: I slice Apple (1). Now, I need to pick up the apple.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1). 
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4). 
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Fridge (1). Fridge (1) is closed. 
+Act: open Fridge (1)
+You open Fridge (1). You see Fridge (1).
+Act: close Fridge (1)
+You close Fridge (1). You see Fridge (1).
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open. 
+Act: pick up Knife (1)
+You pick up Knife (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). I am holding Knife (1) now.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1).  I am holding Knife (1) now.
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4).  I am holding Knife (1) now.
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Knife (1), Fridge (1). Fridge (1) is closed.  I am holding Knife (1) now.
+Act: open Fridge (1)
+You open Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: close Fridge (1)
+You close Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open.  I am holding Knife (1) now.
+Act: put down Knife (1)
+You put Knife (1) on Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3).
+Act: turn on Microwave (1)
+
+Act: turn off Microwave (1)
+The Microwave (1) already turn off.
+Think: I slice Apple (1). Now, I need to pick up the apple.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1). 
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4). 
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Fridge (1). Fridge (1) is closed. 
+Act: open Fridge (1)
+You open Fridge (1). You see Fridge (1).
+Act: close Fridge (1)
+You close Fridge (1). You see Fridge (1).
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open. 
+Act: pick up Knife (1)
+You pick up Knife (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). I am holding Knife (1) now.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1).  I am holding Knife (1) now.
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4).  I am holding Knife (1) now.
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Knife (1), Fridge (1). Fridge (1) is closed.  I am holding Knife (1) now.
+Act: open Fridge (1)
+You open Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: close Fridge (1)
+You close Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open.  I am holding Knife (1) now.
+Act: put down Knife (1)
+You put Knife (1) on Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3).
+Act: turn on Microwave (1)
+
+Act: turn off Microwave (1)
+The Microwave (1) already turn off.
+Think: I slice Apple (1). Now, I need to pick up the apple.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1). 
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4). 
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Fridge (1). Fridge (1) is closed. 
+Act: open Fridge (1)
+You open Fridge (1). You see Fridge (1).
+Act: close Fridge (1)
+You close Fridge (1). You see Fridge (1).
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open. 
+Act: pick up Knife (1)
+You pick up Knife (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). I am holding Knife (1) now.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1).  I am holding Knife (1) now.
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Knife (1), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4).  I am holding Knife (1) now.
+Act: go to Fridge (1)
+You arrive at Fridge (1). You see Knife (1), Fridge (1). Fridge (1) is closed.  I am holding Knife (1) now.
+Act: open Fridge (1)
+You open Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: close Fridge (1)
+You close Fridge (1). You see Knife (1), Fridge (1). I am holding Knife (1) now.
+Act: go to Microwave (1)
+You arrive at Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3). Microwave (1) is open.  I am holding Knife (1) now.
+Act: put down Knife (1)
+You put Knife (1) on Microwave (1). You see Microwave (1), Knife (1), GarbageCan (1), DiningTable (3).
+Act: turn on Microwave (1)
+
+Act: turn off Microwave (1)
+The Microwave (1) already turn off.
+Think: I slice Apple (1). Now, I need to pick up the apple.
+OK.
+Act: go to CounterTop (1)
+You arrive at CounterTop (1). You see Tomato (1), SoapBottle (2), Sink (1), SinkBasin (1), SideTable (1), SaltShaker (2), Potato (1), Mug (3), Fork (1), Faucet (1), Drawer (1), DishSponge (2), Cup (2), CounterTop (1), Cabinet (2, 4), ButterKnife (1). 
+Act: go to SinkBasin (1)
+You arrive at SinkBasin (1). You see Tomato (2), Sink (1), SinkBasin (1), SaltShaker (2), Potato (1), Mug (3), Faucet (1), Drawer (1), DishSponge (2), Cup (1), CounterTop (1), CoffeeMachine (1), Cabinet (2, 4). 
+Max decisions

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReAcTree: Hierarchical LLM Agent Trees</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #0056b3; /* A professional blue */
+            --accent-color: #f1f3f5; /* Light gray for backgrounds */
+            --text-color: #333;
+            --link-hover: #003d82;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Acceptance Banner */
+        .acceptance-banner {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 1px solid #c3e6cb;
+            margin-bottom: 2rem;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1.title {
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .authors {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .authors a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .authors a:hover {
+            text-decoration: underline;
+        }
+
+        .affiliations {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Link Buttons */
+        .link-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--text-color);
+            color: white;
+            border: 2px solid var(--text-color);
+        }
+        .btn-primary:hover {
+            background-color: #555;
+            border-color: #555;
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+        }
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            border-color: #d0d7de;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+
+        /* Content Sections */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        h2.section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .abstract-text {
+            text-align: justify;
+            background-color: var(--accent-color);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        /* Video Responsive Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Figures */
+        figure {
+            margin: 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        figcaption {
+            margin-top: 1rem;
+            color: #555;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* BibTeX */
+        .bibtex-container {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            overflow-x: auto;
+        }
+        pre {
+            margin: 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: #dcfce7; color: #166534; padding: 10px; text-align: center; font-weight: bold; border-radius: 8px; margin-bottom: 20px;">
+    Accepted to AAMAS 2026 (Full Paper)
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="title">ReAcTree: Hierarchical LLM Agent Trees<br>with Control Flow for Long-Horizon Task Planning</h1>
+            
+            <div class="authors">
+                <a href="https://choi-jaewoo.github.io/" target="_blank">Jae-Woo Choi</a><sup>1, 2</sup>, 
+                Hyungmin Kim<sup>2</sup>, 
+                Hyobin Ong<sup>2</sup>, 
+                <a href="https://sites.google.com/view/youngwoo-yoon/" target="_blank">Youngwoo Yoon</a><sup>1, 2</sup>,<br> 
+                Minsu Jang<sup>1, 2</sup>, 
+                Dohyung Kim<sup>1, 2</sup>, 
+                Jaehong Kim<sup>1</sup>
+            </div>
+            
+            <div class="affiliations">
+                <sup>1</sup> Electronics and Telecommunications Research Institute (ETRI)<br>
+                <sup>2</sup> University of Science and Technology (UST)
+            </div>
+
+            <div class="link-buttons">
+                <a href="https://arxiv.org/abs/2511.02424" class="btn btn-primary" target="_blank">
+                    <i class="ai ai-arxiv"></i> Paper (arXiv)
+                </a>
+                <a href="https://github.com/Choi-JaeWoo/ReAcTree" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-github"></i> Code
+                </a>
+            </div>
+        </header>
+
+        <hr style="border: none; border-top: 1px solid #eee; margin: 3rem 0;">
+
+        <section id="abstract">
+            <h2 class="section-title">Abstract</h2>
+            <div class="abstract-text">
+                Recent advancements in large language models (LLMs) have enabled significant progress in decision-making and task planning for embodied autonomous agents. However, most existing methods struggle with complex, long-horizon tasks because they rely on a monolithic trajectory that entangles all past decisions and observations to solve the entire task in a single unified process. To address this limitation, we propose <strong>ReAcTree</strong>, a hierarchical task-planning method that decomposes a complex goal into manageable subgoals within a dynamically constructed agent tree. Each subgoal is handled by an LLM agent node capable of reasoning, acting, and further expanding the tree, while control flow nodes coordinate the execution strategies of agent nodes. In addition, we integrate two complementary memory systems: each agent node retrieves goal-specific, subgoal-level examples from episodic memory and shares environment-specific observations through working memory. Experiments on the WAH-NL and ALFRED show ReAcTree consistently outperforms strong task-planning baselines such as ReAct across diverse LLMs. Notably, on WAH-NL, ReAcTree achieves a 61% goal success rate with Qwen 2.5 72B, nearly doubling ReAct’s 31%.
+            </div>
+        </section>
+
+        <section id="video">
+            <h2>Video Demonstration</h2>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <video width="100%" controls style="border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <source src="videos/my_output_video_2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+        </section>
+
+        <section id="method">
+            <h2 class="section-title">Method Overview</h2>
+            <figure>
+                <img src="images/figure1.png" alt="Overview of ReAcTree framework">
+                <figcaption><strong>Figure 1. Overview of ReAcTree framework.</strong> Given a high-level goal from a user, the root agent node generates a sub-plan and expands the tree by adding appropriate control flow nodes and child agent nodes. Then, the agent tree is executed, coordinated by control flow nodes, with agent nodes performing reasoning and actions in the environment.</figcaption>
+            </figure>
+        </section>
+
+
+        <section id="quantitative-results">
+            <h2 class="section-title">Quantitative Results</h2>
+            
+            <p style="margin-bottom: 1.5rem;">
+                ReAcTree consistently outperforms baselines across diverse LLMs. Notably, on the WAH-NL dataset, 
+                <strong>ReAcTree+WM achieves a 61% Goal Success Rate (GSR) with Qwen 2.5 72B</strong>, 
+                nearly doubling the performance of ReAct+WM.
+            </p>
+
+            <h3>1. Main Results on WAH-NL</h3>
+            <div style="overflow-x: auto; margin-bottom: 2rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <table class="comparison" style="margin: 0; min-width: 1200px;"> <thead>
+                        <tr style="background-color: #f8fafc;">
+                            <th rowspan="2" style="vertical-align: middle; width: 12%; text-align: left; padding-left: 15px; position: sticky; left: 0; background-color: #f8fafc; z-index: 1;">Method</th>
+                            <th colspan="2" style="border-bottom: 1px solid #e2e8f0; text-align: center;">LLaMA 3.1 8B</th>
+                            <th colspan="2" style="border-bottom: 1px solid #e2e8f0; text-align: center;">LLaMA 3.1 70B</th>
+                            <th colspan="2" style="border-bottom: 1px solid #e2e8f0; text-align: center;">Qwen 2.5 7B</th>
+                            <th colspan="2" style="border-bottom: 1px solid #e2e8f0; text-align: center;">Qwen 2.5 72B</th>
+                            <th colspan="2" style="border-bottom: 1px solid #e2e8f0; text-align: center;">Mistral 7B</th>
+                            <th colspan="2" style="border-bottom: 1px solid #e2e8f0; text-align: center;">Gemma 2 9B</th>
+                            <th colspan="2" style="border-bottom: 1px solid #e2e8f0; text-align: center;">Phi-4-RP 14B</th>
+                        </tr>
+                        <tr style="background-color: #f8fafc; font-size: 0.85rem; color: #64748b;">
+                            <th style="text-align: center;">GSR</th><th style="text-align: center;">SSR</th>
+                            <th style="text-align: center;">GSR</th><th style="text-align: center;">SSR</th>
+                            <th style="text-align: center;">GSR</th><th style="text-align: center;">SSR</th>
+                            <th style="text-align: center;">GSR</th><th style="text-align: center;">SSR</th>
+                            <th style="text-align: center;">GSR</th><th style="text-align: center;">SSR</th>
+                            <th style="text-align: center;">GSR</th><th style="text-align: center;">SSR</th>
+                            <th style="text-align: center;">GSR</th><th style="text-align: center;">SSR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: left; background-color: #fff; padding-left: 15px; position: sticky; left: 0; z-index: 1;">ZSP [19]</td>
+                            <td style="text-align: center;">1.00</td><td style="text-align: center;">13.03</td>
+                            <td style="text-align: center;">0.00</td><td style="text-align: center;">14.42</td>
+                            <td style="text-align: center;">0.00</td><td style="text-align: center;">8.98</td>
+                            <td style="text-align: center;">0.00</td><td style="text-align: center;">14.22</td>
+                            <td style="text-align: center;">0.00</td><td style="text-align: center;">11.65</td>
+                            <td style="text-align: center;">1.00</td><td style="text-align: center;">13.87</td>
+                            <td style="text-align: center;">17.90</td><td style="text-align: center;">0.00</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; background-color: #fff; padding-left: 15px; position: sticky; left: 0; z-index: 1;">Tree-Planner (N=25)</td>
+                            <td style="text-align: center;">1.00</td><td style="text-align: center;">17.00</td>
+                            <td style="text-align: center;">2.00</td><td style="text-align: center;">16.72</td>
+                            <td style="text-align: center;">6.00</td><td style="text-align: center;">22.23</td>
+                            <td style="text-align: center;">6.00</td><td style="text-align: center;">32.41</td>
+                            <td style="text-align: center;">1.00</td><td style="text-align: center;">20.43</td>
+                            <td style="text-align: center;">2.00</td><td style="text-align: center;">17.58</td>
+                            <td style="text-align: center;">3.00</td><td style="text-align: center;">17.52</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; background-color: #fff; padding-left: 15px; position: sticky; left: 0; z-index: 1;">Tree-Planner (N=50)</td>
+                            <td style="text-align: center;">4.00</td><td style="text-align: center;">21.85</td>
+                            <td style="text-align: center;">4.00</td><td style="text-align: center;">23.43</td>
+                            <td style="text-align: center;">8.00</td><td style="text-align: center;">28.10</td>
+                            <td style="text-align: center;">9.00</td><td style="text-align: center;">36.03</td>
+                            <td style="text-align: center;">6.00</td><td style="text-align: center;">23.63</td>
+                            <td style="text-align: center;">3.00</td><td style="text-align: center;">23.30</td>
+                            <td style="text-align: center;">4.00</td><td style="text-align: center;">20.40</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; background-color: #fff; padding-left: 15px; position: sticky; left: 0; z-index: 1;">ReAct [56]</td>
+                            <td style="text-align: center;">8.00</td><td style="text-align: center;">34.25</td>
+                            <td style="text-align: center;">30.00</td><td style="text-align: center;">57.05</td>
+                            <td style="text-align: center;">10.00</td><td style="text-align: center;">31.82</td>
+                            <td style="text-align: center;">26.00</td><td style="text-align: center;">51.38</td>
+                            <td style="text-align: center;">6.00</td><td style="text-align: center;">28.18</td>
+                            <td style="text-align: center;">9.00</td><td style="text-align: center;">37.20</td>
+                            <td style="text-align: center;"><u>33.00</u></td><td style="text-align: center;">48.13</td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid #e2e8f0;">
+                            <td style="text-align: left; background-color: #fff; padding-left: 15px; position: sticky; left: 0; z-index: 1;">ReAct + WM</td>
+                            <td style="text-align: center;">16.00</td><td style="text-align: center;">42.65</td>
+                            <td style="text-align: center;"><u>33.00</u></td><td style="text-align: center;"><u>63.15</u></td>
+                            <td style="text-align: center;">13.00</td><td style="text-align: center;">39.73</td>
+                            <td style="text-align: center;">31.00</td><td style="text-align: center;">54.05</td>
+                            <td style="text-align: center;">9.00</td><td style="text-align: center;">31.95</td>
+                            <td style="text-align: center;">11.00</td><td style="text-align: center;">39.93</td>
+                            <td style="text-align: center;"><u>33.00</u></td><td style="text-align: center;">51.28</td>
+                        </tr>
+                        
+                        <tr style="background-color: #f0f9ff;">
+                            <td style="text-align: left; font-weight: bold; color: var(--primary-color); padding-left: 15px; position: sticky; left: 0; background-color: #f0f9ff; z-index: 1;">ReAcTree (Ours)</td>
+                            <td style="text-align: center;"><u>21.00</u></td><td style="text-align: center;"><u>51.98</u></td>
+                            <td style="text-align: center;">32.00</td><td style="text-align: center;">60.58</td>
+                            <td style="text-align: center;"><u>18.00</u></td><td style="text-align: center;"><u>50.20</u></td>
+                            <td style="text-align: center;"><u>48.00</u></td><td style="text-align: center;"><u>75.13</u></td>
+                            <td style="text-align: center;"><u>11.00</u></td><td style="text-align: center;"><u>37.92</u></td>
+                            <td style="text-align: center;"><u>26.00</u></td><td style="text-align: center;"><u>60.43</u></td>
+                            <td style="text-align: center;"><strong>49.00</strong></td><td style="text-align: center;"><u>67.47</u></td>
+                        </tr>
+                        <tr style="background-color: #f0f9ff;">
+                            <td style="text-align: left; font-weight: bold; color: var(--primary-color); padding-left: 15px; position: sticky; left: 0; background-color: #f0f9ff; z-index: 1;">ReAcTree + WM (Ours)</td>
+                            <td style="text-align: center;"><strong>30.00</strong></td><td style="text-align: center;"><strong>60.77</strong></td>
+                            <td style="text-align: center;"><strong>58.00</strong></td><td style="text-align: center;"><strong>79.27</strong></td>
+                            <td style="text-align: center;"><strong>37.00</strong></td><td style="text-align: center;"><strong>59.63</strong></td>
+                            <td style="text-align: center;"><strong>61.00</strong></td><td style="text-align: center;"><strong>79.58</strong></td>
+                            <td style="text-align: center;"><strong>15.00</strong></td><td style="text-align: center;"><strong>49.57</strong></td>
+                            <td style="text-align: center;"><strong>38.00</strong></td><td style="text-align: center;"><strong>67.08</strong></td>
+                            <td style="text-align: center;"><strong>49.00</strong></td><td style="text-align: center;"><strong>69.30</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="caption" style="margin: 10px;">Table 1. Goal Success Rate (GSR) and Subgoal Success Rate (SSR) on WAH-NL dataset (%). Bold indicates the best result, and underline indicates the second best.</p>
+            </div>
+
+            <h3>2. Main Results on ALFRED</h3>
+            <div style="overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; display: inline-block; min-width: 500px;">
+                <table class="comparison" style="margin: 0; width: 100%;">
+                    <thead>
+                        <tr style="background-color: #f8fafc;">
+                            <th style="vertical-align: middle; text-align: left; padding-left: 15px;">Split</th>
+                            <th style="vertical-align: middle; text-align: left; padding-left: 15px;">Method</th>
+                            <th style="vertical-align: middle; text-align: center;">LLaMA 3.1 70B</th>
+                            <th style="vertical-align: middle; text-align: center;">Qwen 2.5 72B</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2" style="vertical-align: middle; background-color: #fff; font-weight: 600; padding-left: 15px;">Valid-Seen</td>
+                            <td style="text-align: left; background-color: #fff; padding-left: 15px;">ReAct + WM</td>
+                            <td style="text-align: center;">33.31</td>
+                            <td style="text-align: center;">37.07</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="text-align: left; font-weight: bold; background-color: #f0f9ff; color: var(--primary-color); padding-left: 15px;">ReAcTree + WM</td>
+                            <td style="text-align: center; font-weight: bold; background-color: #f0f9ff;">40.00</td>
+                            <td style="text-align: center; font-weight: bold; background-color: #f0f9ff;">40.85</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" style="vertical-align: middle; background-color: #fff; font-weight: 600; padding-left: 15px;">Valid-Unseen</td>
+                            <td style="text-align: left; background-color: #fff; padding-left: 15px;">ReAct + WM</td>
+                            <td style="text-align: center;">32.40</td>
+                            <td style="text-align: center;">39.10</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; font-weight: bold; background-color: #f0f9ff; color: var(--primary-color); padding-left: 15px;">ReAcTree + WM</td>
+                            <td style="text-align: center; font-weight: bold; background-color: #f0f9ff;">37.03</td>
+                            <td style="text-align: center; font-weight: bold; background-color: #f0f9ff;">39.83</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="caption" style="margin: 10px;">Table 2. Goal Success Rate (GSR) on ALFRED dataset (%). ReAcTree demonstrates strong generalization to unseen environments.</p>
+            </div>
+        </section>
+
+        
+        <section id="results">
+            <h2 class="section-title">Qualitative Results</h2>
+            <figure style="max-width: 80%; margin: 0 auto;">
+                <img src="images/figure3.png" alt="Qualitative example on WAH-NL">
+                <figcaption><strong>Figure 3. Qualitative example on WAH-NL.</strong> (Left) ReAcTree successfully completes the long-horizon task by effectively combining reasoning, acting, and planning capabilities. (Right) ReAct fails the task due to repetitive actions and lack of hierarchical planning.</figcaption>
+            </figure>
+        </section>
+
+        <section id="citation">
+            <h2 class="section-title">Citation</h2>
+            <div class="bibtex-container">
+<pre><code>@misc{choi2025reactree,
+      title={ReAcTree: Hierarchical LLM Agent Trees with Control Flow for Long-Horizon Task Planning}, 
+      author={Jae-Woo Choi and Hyungmin Kim and Hyobin Ong and Youngwoo Yoon and Minsu Jang and Dohyung Kim and Jaehong Kim},
+      year={2025},
+      eprint={2511.02424},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2511.02424},
+}
+}</code></pre>
+            </div>
+        </section>
+
+    </div> <footer>
+        <p>© 2026 ReAcTree Project. Website design tailored for academic presentation.</p>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+</body>
+</html>

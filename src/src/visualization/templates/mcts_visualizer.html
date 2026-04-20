@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCTS Visualizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        #header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            padding: 10px; 
+            background-color: rgba(255, 255, 255, 0.8); 
+            z-index: 1000;
+        }
+        #tree { 
+            width: 100vw; 
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 3px;
+        }
+        .node text { font: 12px sans-serif; }
+        .link { fill: none; stroke: #ccc; stroke-width: 2px; }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 5px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        .node.root circle { fill: #ffA500; }
+        .node.best circle { fill: #ff0000; }
+        .node.start-round circle { stroke: #00ff00; stroke-width: 5px; }
+        .node.end-round circle { stroke: #ff00ff; stroke-width: 5px; }
+        .node.simulate circle { fill: #lightblue; }
+        .node.expand circle { fill: #yellow; }
+        .node.simulated circle { fill: #lightgrey; }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>MCTS Visualizer - <span id="current-task">Loading task...</span></h1>
+    </div>
+    <div id="tree"></div>
+    <script>
+        const socket = io();
+        let svg, g, tooltip;
+        let currentTreeData, currentRound, currentTask;
+        
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+
+        socket.on('tree_update', function(data) {
+            console.log('Received tree update:', data);
+            try {
+                const treeData = JSON.parse(data);
+                if (treeData.tree) {
+                    console.log('Updating tree with new data');
+                    currentTreeData = treeData.tree;
+                    currentRound = treeData.current_round;
+                    if (treeData.task) {
+                        currentTask = treeData.task;
+                        updateTaskDisplay();
+                    }
+                    updateTree();
+                } else if (treeData.message) {
+                    console.log(treeData.message);
+                }
+            } catch (error) {
+                console.error('Error parsing tree data:', error);
+            }
+        });
+
+        socket.on('task_update', function(data) {
+            console.log('Received task update:', data);
+            try {
+                const taskData = JSON.parse(data);
+                if (taskData.task) {
+                    currentTask = taskData.task;
+                    updateTaskDisplay();
+                }
+            } catch (error) {
+                console.error('Error parsing task data:', error);
+            }
+        });
+
+        function updateTaskDisplay() {
+            document.getElementById('current-task').textContent = currentTask || 'Unknown task';
+        }
+
+        function updateNodeInTree(updatedNode, action) {
+            function updateNode(node) {
+                if (node.id === updatedNode.id) {
+                    Object.assign(node, updatedNode);
+                    node.class = action;
+                    return true;
+                }
+                if (node.children) {
+                    for (let child of node.children) {
+                        if (updateNode(child)) return true;
+                    }
+                }
+                return false;
+            }
+            updateNode(currentTreeData);
+        }
+
+        function initializeTree() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            svg = d3.select("#tree")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            g = svg.append("g")
+                .attr("transform", `translate(${width / 2},${height / 2})`);
+
+            tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+        }
+
+        function updateTree() {
+            console.log('Updating tree for round', currentRound);
+            if (!svg) initializeTree();
+
+            if (!currentTreeData) {
+                console.error('No tree data available');
+                return;
+            }
+
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const treeLayout = d3.tree().size([width * 0.9, height * 0.9]);
+            const root = d3.hierarchy(currentTreeData);
+            treeLayout(root);
+
+            // 计算树的边界
+            let left = Infinity;
+            let right = -Infinity;
+            let top = Infinity;
+            let bottom = -Infinity;
+            root.each(d => {
+                if (d.x < left) left = d.x;
+                if (d.x > right) right = d.x;
+                if (d.y < top) top = d.y;
+                if (d.y > bottom) bottom = d.y;
+            });
+
+            // 计算偏移量以居中树
+            const offsetX = (width - (right - left)) / 2 - left;
+            const offsetY = (height - (bottom - top)) / 2 - top;
+
+            // 更新组的变换以居中树
+            g.attr("transform", `translate(${offsetX},${offsetY})`);
+
+            const link = g.selectAll(".link")
+                .data(root.links(), d => d.target.data.id)
+                .join(
+                    enter => enter.append("path")
+                        .attr("class", "link")
+                        .attr("d", d3.linkVertical()
+                            .x(d => d.x)
+                            .y(d => d.y)),
+                    update => update.attr("d", d3.linkVertical()
+                        .x(d => d.x)
+                        .y(d => d.y)),
+                    exit => exit.remove()
+                );
+
+            const node = g.selectAll(".node")
+                .data(root.descendants(), d => d.data.id)
+                .join(
+                    enter => {
+                        const nodeEnter = enter.append("g")
+                            .attr("class", d => `node ${d.data.class || ""}`)
+                            .attr("transform", d => `translate(${d.x},${d.y})`);
+
+                        nodeEnter.append("circle")
+                            .attr("r", 10)
+                            .on("mouseover", showTooltip)
+                            .on("mouseout", hideTooltip);
+
+                        nodeEnter.append("text")
+                            .attr("dy", ".35em")
+                            .attr("x", d => d.children ? -13 : 13)
+                            .style("text-anchor", d => d.children ? "end" : "start")
+                            .text(d => d.data.state.action_history[d.data.state.action_history.length - 1] || "Root");
+
+                        return nodeEnter;
+                    },
+                    update => update.attr("transform", d => `translate(${d.x},${d.y})`)
+                        .attr("class", d => `node ${d.data.class || ""}`),
+                    exit => exit.remove()
+                );
+
+            node.attr("class", d => `node ${d.data.class || ""}`);
+        }
+
+        function showTooltip(event, d) {
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip.html(`Q/N: ${d.data.quality_value.toFixed(2)}/${d.data.visit_count}<br/>` +
+                         `Round: ${d.data.state.current_round_index}<br/>` +
+                         `Actions: ${d.data.state.action_history.join(", ")}`)
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        }
+
+        function hideTooltip() {
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        }
+
+        initializeTree();
+        window.addEventListener('resize', updateTree);
+    </script>
+</body>
+</html>
