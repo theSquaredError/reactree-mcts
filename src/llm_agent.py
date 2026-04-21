@@ -110,6 +110,18 @@ class LlmAgent():
 
             return next_step_info
     
+    def plan_expand_only(self):
+        """Force the LLM to produce an Expand decomposition — no Act/Think choice."""
+        try:
+            if self.model_name in ['gpt-3.5-turbo-0125', 'gpt-4-turbo-2024-04-09', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-05-13']:
+                with guidance.assistant():
+                    self.llm += 'Expand:\n- control flow: ' + guidance.select(['sequence', 'fallback', 'parallel'], name='control_flow') + '\n- subgoals: ' + guidance.gen(stop='\n', name='conditions', max_tokens=200, temperature=0) + '\nOK.\n'
+            else:
+                self.llm += 'Expand:\n- control flow: ' + guidance.select(['sequence', 'fallback', 'parallel'], name='control_flow') + '\n- subgoals: ' + guidance.gen(stop='\n', name='conditions', max_tokens=200, temperature=0) + '\nOK.\n'
+            return {'next_step_class': 'Expand', 'next_step': {'control_flow': self.llm['control_flow'], 'conditions': self.llm['conditions']}}
+        except Exception as e:
+            return {'next_step_class': 'Error', 'next_step': e}
+
     def add_obs(self, obs_text):
         ### TODO: OpenAI API Case
         if self.model_name in ['gpt-3.5-turbo-0125', 'gpt-4-turbo-2024-04-09', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-05-13']:

@@ -182,5 +182,10 @@ class AlfredReactreeWithHMT(AlfredReactree):
             self.env.vis_log = []
 
         terminate_info = self.collect_llm_with_hmt(task_d, args_dict)
-        terminate_info["success"] = self.env.get_goal_satisfied()
+        env_success = self.env.get_goal_satisfied()
+        self.logger.info(
+            "Success check | planner=%s | env=%s | task=%s",
+            terminate_info.get("success"), env_success, task_d.get("task"),
+        )
+        terminate_info["success"] = env_success
         return terminate_info

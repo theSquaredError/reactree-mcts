@@ -93,3 +93,49 @@ final_success_trajectory: structured subgoal-level primitive traces after commit
 
 
 collect_llm_with_hmt
+
+
+outer_budget:
+how many outer-level MCTS iterations are run for a goal decompositions node (select -> expand -> )
+
+inner budget:
+budget for low-level action MCTS when executing a primitve/actionable subgoal
+
+decomp_candidate_count:
+this is the max number of unique decomposition candidates(expand outputs)
+
+Goal: put cooked potato in sink
+
+Possible decompositions (high-level plan options):
+
+  find knife -> slice potato -> cook potato -> put in sink
+  find potato first -> find knife -> slice -> cook -> put in sink
+  cook potato first (bad plan) -> slice -> put in sink
+
+
+main() [hmt2.py]
+ └─ _main_impl(cfg) [runner.py]
+     └─ AlfredReactreeWithHMT.__init__()  [integration.py]
+         └─ OuterMCTSPlanner.__init__()   [outer_mcts.py]
+             └─ ActionMCTSWrapper.__init__()  [inner_mcts.py]
+     └─ planner.run() [integration.py]
+         └─ collect_llm_with_hmt()  [integration.py]
+             └─ execute_goal_with_mcts()  [outer_mcts.py]
+                 ├─ outer_monte_carlo_tree_search()  [outer_mcts.py]
+                 │   ├─ outer_tree_policy() → outer_expand()
+                 │   │   └─ _llm_generate_expand_candidate()  ← LLM call (Expand)
+                 │   ├─ outer_default_policy()
+                 │   │   └─ _evaluate_decomposition_action()
+                 │   │       └─ _simulate_goal()
+                 │   │           └─ inner_mcts_solve_subgoal()
+                 │   │               └─ ActionMCTSWrapper.solve_subgoal()  [inner_mcts.py]
+                 │   │                   └─ _inner_monte_carlo_tree_search()
+                 │   │                       ├─ _inner_tree_policy()  (SELECT/EXPAND)
+                 │   │                       │   └─ _inner_expand()  ← LLM via _MCTSChatAdapter
+                 │   │                       ├─ _inner_default_policy()  (SIMULATE)
+                 │   │                       └─ _inner_backup()  (BACKPROP)
+                 │   └─ outer_backup()  (BACKPROP)
+                 └─ execute_committed_decomposition()  [outer_mcts.py]
+                     └─ execute_goal_with_mcts()  (recursive per subgoal)
+                         └─ _execute_subgoal_with_reactree()  [outer_mcts.py]
+                             └─ inner_mcts_solve_subgoal() → ActionMCTSWrapper.solve_subgoal()

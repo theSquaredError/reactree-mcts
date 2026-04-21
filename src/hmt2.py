@@ -24,9 +24,7 @@ try:
 except ImportError:
     hydra = None
 
-# Re-export public symbols so existing code that does
-#   from hmt2 import AlfredReactreeWithHMT
-# continues to work unchanged.
+
 from hmt import (
     AlfredReactreeWithHMT,
     OuterMCTSPlanner,

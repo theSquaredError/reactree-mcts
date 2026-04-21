@@ -234,12 +234,11 @@ class OuterMCTSPlanner:
         """Ask the LLM for one Expand decomposition. Returns None if the LLM
         chose Act/Error or failed to produce decomposition progress."""
         nl_inst_info = {"nl_inst": goal, "message": None, "task_type": task_type, "depth": depth}
-        minimal_skill_set = ["done", "failure"]
         max_try = 6
         try:
             self.llm_agent.reset(nl_inst_info, obs_text)
             for attempt in range(max_try):
-                next_step_info = self.llm_agent.plan_next_step(minimal_skill_set)
+                next_step_info = self.llm_agent.plan_expand_only()
                 next_step_class = next_step_info["next_step_class"]
                 next_step = next_step_info["next_step"]
                 self.logger.info(
@@ -312,29 +311,29 @@ class OuterMCTSPlanner:
         )
         return candidate
 
-    def get_decomposition_candidates(
-        self, goal: str, observation: str
-    ) -> List[DecompositionAction]:
-        """Generate up to decomp_candidate_count unique LLM decompositions."""
-        cleaned = goal.strip() if goal else "complete the task"
-        max_candidates = max(1, int(self.decomp_candidate_count))
-        final: List[DecompositionAction] = []
-        seen: set = set()
+    # def get_decomposition_candidates(
+    #     self, goal: str, observation: str
+    # ) -> List[DecompositionAction]:
+    #     """Generate up to decomp_candidate_count unique LLM decompositions."""
+    #     cleaned = goal.strip() if goal else "complete the task"
+    #     max_candidates = max(1, int(self.decomp_candidate_count))
+    #     final: List[DecompositionAction] = []
+    #     seen: set = set()
 
-        for _ in range(max_candidates * 4):
-            if len(final) >= max_candidates:
-                break
-            candidate = self._llm_generate_expand_candidate(cleaned, observation, "unknown", 0)
-            if candidate is None:
-                continue
-            key = self._candidate_subgoal_key(candidate)
-            if key in seen:
-                continue
-            seen.add(key)
-            final.append(candidate)
+    #     for _ in range(max_candidates * 4):
+    #         if len(final) >= max_candidates:
+    #             break
+    #         candidate = self._llm_generate_expand_candidate(cleaned, observation, "unknown", 0)
+    #         if candidate is None:
+    #             continue
+    #         key = self._candidate_subgoal_key(candidate)
+    #         if key in seen:
+    #             continue
+    #         seen.add(key)
+    #         final.append(candidate)
 
-        self.logger.info("Generated %d LLM candidates for goal: %s", len(final), cleaned)
-        return final
+    #     self.logger.info("Generated %d LLM candidates for goal: %s", len(final), cleaned)
+    #     return final
 
     # -----------------------------------------------------------------------
     # Reactree execution loop (used at execution time for primitive goals)
