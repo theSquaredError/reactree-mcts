@@ -163,6 +163,18 @@ class ActionMCTSWrapper:
                         from llm.prompt import SYSTEM_PROMPT as _SYS  # type: ignore
                     except ImportError:
                         _SYS = "You are a robot agent. Pick the best action from the candidate list."
+
+                # Prepend original task + current subgoal so the LLM always
+                # knows both what the overall goal is and what step it is on.
+                subgoal = getattr(state, "subgoal", "")
+                nl_inst = getattr(state, "nl_inst", "")
+                task_ctx = ""
+                if nl_inst:
+                    task_ctx += f"Overall task: {nl_inst}\n"
+                if subgoal and subgoal != nl_inst:
+                    task_ctx += f"Current subgoal: {subgoal}\n"
+                sys_prompt = (task_ctx + "\n" + _SYS).strip() if task_ctx else _SYS
+
                 msgs: List[Dict[str, Any]] = []
                 if "Welcome to TextWorld, ALFRED!" in (state.obs or ""):
                     msgs.append({
@@ -184,7 +196,7 @@ class ActionMCTSWrapper:
                             msgs.append({"role": "user", "content": f"{prefix}{obs}"})
                             if i < len(action_history):
                                 msgs.append({"role": "assistant", "content": action_history[i]})
-                return _SYS, msgs
+                return sys_prompt, msgs
 
             self.mcts.prompt_template = _types.MethodType(_prompt_template_fixed, self.mcts)
 
@@ -208,6 +220,10 @@ class ActionMCTSWrapper:
         from the subgoal-start state. Mirrors the original Node class fields:
         visit_count, quality_value, children, parent — plus action_prob for
         the discounted UCT formula from algorithm.py backup().
+
+        action_priors holds LLM-ranked per-action probabilities computed once
+        on first expansion (via _llm_rank_candidates).  The reactree_action
+        seed is pre-loaded with prob 2.0 so UCT explores it first.
         """
 
         def __init__(
@@ -217,6 +233,7 @@ class ActionMCTSWrapper:
             available_commands: List[str],
             action_prob: float = 1.0,
             parent: Optional["ActionMCTSWrapper._InnerNode"] = None,
+            action_priors: Optional[Dict[str, float]] = None,
         ) -> None:
             self.action_history = list(action_history)
             self.obs_list = list(obs_list)
@@ -227,6 +244,8 @@ class ActionMCTSWrapper:
             self.tried_actions: List[str] = []      # actions already expanded from here
             self.visit_count: int = 0
             self.quality_value: float = 0.0
+            # Per-action priors populated lazily on first expand (or pre-seeded at root)
+            self.action_priors: Dict[str, float] = action_priors or {}
 
         @property
         def obs(self) -> str:
@@ -240,10 +259,19 @@ class ActionMCTSWrapper:
     # -----------------------------------------------------------------------
 
     class _RolloutState:
-        def __init__(self, obs: str, obs_list: List[str], action_history: List[str]):
+        def __init__(
+            self,
+            obs: str,
+            obs_list: List[str],
+            action_history: List[str],
+            subgoal: str = "",
+            nl_inst: str = "",
+        ):
             self.obs = obs
             self.obs_list = list(obs_list)
             self.action_history = list(action_history)
+            self.subgoal = subgoal
+            self.nl_inst = nl_inst
 
     # -----------------------------------------------------------------------
     # Helpers
@@ -272,6 +300,175 @@ class ActionMCTSWrapper:
         except Exception as exc:
             logger.warning("_current_skill_set failed: %s", exc)
             return ["done", "failure"]
+
+    def _llm_rank_candidates(
+        self,
+        obs: str,
+        available_commands: List[str],
+        subgoal: str,
+        reactree_action: Optional[str] = None,
+        top_k: int = 8,
+    ) -> Dict[str, float]:
+        """
+        Ask the LLM to reason about which actions are most likely to succeed
+        given the current observation and subgoal, then return a prior-prob dict.
+
+        Called once per node on its first expansion so MCTS explores in
+        observation-informed order rather than picking candidates blindly.
+
+        reactree_action (the outer planner's suggestion) is pre-boosted to
+        prob=2.0 so UCT selects it first unless evidence suggests otherwise.
+        """
+        if not available_commands:
+            priors: Dict[str, float] = {}
+            if reactree_action:
+                priors[reactree_action] = 2.0
+            return priors
+
+        k = min(top_k, len(available_commands))
+        cmds_str = "\n".join(
+            f"  {i + 1}. {cmd}" for i, cmd in enumerate(available_commands[:20])
+        )
+        prompt = (
+            f"Subgoal: {subgoal}\n"
+            f"Observation: {obs}\n\n"
+            f"Available actions:\n{cmds_str}\n\n"
+            f"List the {k} most helpful actions to achieve the subgoal, "
+            f"one per line, most helpful first:"
+        )
+
+        ranked: List[str] = []
+        try:
+            import guidance
+            llm_obj = getattr(self.llm_agent, "llm", None)
+            if llm_obj is None:
+                raise AttributeError("llm_agent.llm not found")
+            lm = llm_obj + prompt
+            lm += guidance.gen(stop="\n\n", name="ranking", max_tokens=250, temperature=0)
+            ranking_text: str = (lm["ranking"] or "").strip()
+
+            for line in ranking_text.split("\n"):
+                line = line.strip().lstrip("0123456789.-) ").strip()
+                if not line:
+                    continue
+                line_lower = line.lower()
+                line_words = set(line_lower.split())
+                best_cmd: Optional[str] = None
+                best_overlap = 0
+                for cmd in available_commands:
+                    overlap = len(line_words & set(cmd.lower().split()))
+                    if overlap > best_overlap:
+                        best_overlap = overlap
+                        best_cmd = cmd
+                if best_cmd and best_overlap >= 1 and best_cmd not in ranked:
+                    ranked.append(best_cmd)
+                if len(ranked) >= k:
+                    break
+        except Exception as exc:
+            logger.warning("_llm_rank_candidates failed: %s", exc)
+
+        # Assign probs: rank 1 → k/k, rank 2 → (k-1)/k, …
+        priors = {}
+        for i, cmd in enumerate(ranked):
+            priors[cmd] = float(k - i) / k
+        # Unranked actions get a small uniform prior so they can still be tried
+        for cmd in available_commands:
+            if cmd not in priors:
+                priors[cmd] = 0.1
+        # Pre-boost the reactree-provided action so it is explored first
+        if reactree_action:
+            priors[reactree_action] = max(priors.get(reactree_action, 0.1), 2.0)
+            logger.debug(
+                "_llm_rank_candidates: reactree_action='%s' boosted to 2.0", reactree_action
+            )
+
+        # For find/pick-up subgoals, boost "open" actions for containers
+        # visible in the current observation. Cabinets and drawers hide objects
+        # until opened — without this boost, MCTS ignores them and keeps
+        # navigating to new locations instead of searching inside containers.
+        sg_lower = subgoal.lower()
+        is_find_subgoal = any(
+            kw in sg_lower for kw in ("find", "pick up", "get", "fetch", "grab")
+        )
+        if is_find_subgoal and obs:
+            obs_lower = obs.lower()
+            import re as _re
+            # Extract container types mentioned in obs (cabinet, drawer, fridge, etc.)
+            container_types = _re.findall(
+                r"\b(cabinet|drawer|fridge|refrigerator|safe|microwave|shelf)\b",
+                obs_lower,
+            )
+            for cmd in available_commands:
+                cmd_lower = cmd.lower()
+                if cmd_lower.startswith("open ") and any(
+                    ct in cmd_lower for ct in container_types
+                ):
+                    old_prior = priors.get(cmd, 0.1)
+                    priors[cmd] = max(old_prior, 0.8)
+                    logger.debug(
+                        "_llm_rank_candidates: boosted open action '%s' to %.1f (find subgoal)",
+                        cmd, priors[cmd],
+                    )
+
+        logger.debug(
+            "_llm_rank_candidates | subgoal='%s' | top=%s | reactree='%s'",
+            subgoal, ranked[:3], reactree_action,
+        )
+        return priors
+
+    def select_best_action(
+        self,
+        obs: str,
+        subgoal: str,
+        reactree_action: Optional[str] = None,
+    ) -> str:
+        """
+        Explore inner_budget primitive action candidates and return the single
+        best one.  Uses _llm_rank_candidates (one LLM call) to rank all
+        available actions with the reactree_action hint getting priority, then
+        returns the top-ranked action.  No env steps are taken here — the
+        caller executes the returned action and continues its own loop.
+        """
+        available = self._current_skill_set()
+        if not available:
+            return reactree_action or "done"
+
+        priors = self._llm_rank_candidates(
+            obs=obs,
+            available_commands=available,
+            subgoal=subgoal,
+            reactree_action=reactree_action,
+            top_k=max(self.budget, 5),
+        )
+        best = max(available, key=lambda a: priors.get(a, 0.1))
+        logger.info(
+            "select_best_action | subgoal='%s' | hint='%s' | best='%s' | prior=%.3f",
+            subgoal, reactree_action, best, priors.get(best, 0.1),
+        )
+        return best
+
+    @staticmethod
+    def _extract_target_object(subgoal: str) -> Optional[str]:
+        """
+        Extract the main object name from a subgoal string.
+
+        Examples:
+          "find and pick up knife"    → "knife"
+          "pick up Potato (1)"        → "potato"
+          "go to CounterTop (1)"      → "countertop"
+          "slice the potato"          → "potato"
+        """
+        import re as _re
+        text = subgoal.lower().strip()
+        # Strip leading verb phrases to reach the object
+        text = _re.sub(
+            r"^(find and pick up|pick up|go to|put|place|slice|cook|clean|"
+            r"heat|cool|open|close|toggle|turn on|turn off|find)\s+",
+            "", text,
+        )
+        # Drop trailing parenthesised instance numbers: "knife (1)" → "knife"
+        text = _re.sub(r"\s*\(\d+(?:,\s*\d+)*\)", "", text).strip()
+        return text if text else None
 
     def _is_subgoal_satisfied(self, subgoal: str, action: str, obs_text: str) -> bool:
         sg = self._normalize_text(subgoal)
@@ -371,20 +568,39 @@ class ActionMCTSWrapper:
         EXPAND — mirrors algorithm.py expand() + expand_action().
 
         1. Restore env to node's state via _restore_and_replay (= state.clone()).
-        2. Ask LLM to pick an untried action from available_commands.
-        3. Execute that action, observe result, build child node.
+        2. On the node's first expansion, call _llm_rank_candidates() once to
+           build observation-informed action priors (reactree_action pre-boosted).
+        3. Pick the highest-prior untried action — so MCTS explores in LLM-reasoned
+           order rather than blindly.
+        4. Execute that action, observe result, build child node.
         """
-        cur_obs, available = self._restore_and_replay(restore_info, node.action_history)
+        full_history = self._committed_history + node.action_history
+        cur_obs, available = self._restore_and_replay(restore_info, full_history)
 
         untried = [a for a in available if a not in node.tried_actions]
         if not untried:
             return None
 
-        state = self._RolloutState(
-            obs=cur_obs, obs_list=node.obs_list, action_history=node.action_history
-        )
-        action, action_prob = self.mcts.llm_inference(state, untried)
+        # Lazily build ranked priors on first expansion of this node.
+        # This is one LLM call per unique env state, not one per MCTS iteration.
+        if not node.action_priors:
+            node.action_priors = self._llm_rank_candidates(
+                obs=cur_obs,
+                available_commands=available,
+                subgoal=getattr(self, "_current_subgoal", ""),
+                reactree_action=getattr(self, "_reactree_action", None),
+            )
+
+        # Pick highest-prior untried action (greedy on LLM ranking).
+        action = max(untried, key=lambda a: node.action_priors.get(a, 0.1))
+        action_prob = node.action_priors.get(action, 1.0)
         node.tried_actions.append(action)
+
+        logger.debug(
+            "EXPAND | depth=%d | action='%s' (prior=%.3f) | reactree='%s' | untried_left=%d",
+            len(node.action_history), action, action_prob,
+            getattr(self, "_reactree_action", None), len(untried) - 1,
+        )
 
         if action in ALFRED_TERMINAL_ACTIONS:
             # Terminal action chosen during expand — build a leaf node with no env step.
@@ -414,10 +630,6 @@ class ActionMCTSWrapper:
             parent=node,
         )
         node.children.append(child)
-        logger.debug(
-            "EXPAND | depth=%d | action='%s' | prob=%.3f | untried_left=%d",
-            len(child.action_history), action, action_prob, len(untried) - 1,
-        )
         return child
 
     def _inner_tree_policy(
@@ -448,13 +660,20 @@ class ActionMCTSWrapper:
         to terminal. Returns discounted reward: 1.0 on success, -1.0 on failure.
         The discount accumulates gamma * action_prob per step, same as original.
         """
-        cur_obs, _ = self._restore_and_replay(restore_info, node.action_history)
+        full_history = self._committed_history + node.action_history
+        cur_obs, _ = self._restore_and_replay(restore_info, full_history)
         action_history = list(node.action_history)
         obs_list = list(node.obs_list)
         gamma = 0.95
         sim_discount = 1.0
         max_sim_steps = max(1, self.budget - len(action_history))
 
+        logger.info(
+            "  │  SIMULATE | start_depth=%d | max_sim_steps=%d",
+            len(node.action_history), max_sim_steps,
+        )
+        target_object = self._extract_target_object(subgoal)
+        logger.debug("  │  SIMULATE target_object='%s'", target_object)
         failed_actions: List[str] = []
         for _ in range(max_sim_steps):
             available = [a for a in self._current_skill_set() if a not in failed_actions]
@@ -462,7 +681,11 @@ class ActionMCTSWrapper:
                 return -1.0 * sim_discount
 
             state = self._RolloutState(
-                obs=cur_obs, obs_list=obs_list, action_history=action_history
+                obs=cur_obs,
+                obs_list=obs_list,
+                action_history=action_history,
+                subgoal=getattr(self, "_current_subgoal", ""),
+                nl_inst=getattr(self, "_current_nl_inst", ""),
             )
             action, action_prob = self.mcts.llm_inference(state, available)
             sim_discount *= gamma * float(action_prob)
@@ -475,7 +698,10 @@ class ActionMCTSWrapper:
             try:
                 obs_ret = self.env.llm_skill_interact(action)
                 cur_obs = obs_ret.get("message", cur_obs)
-                # If env rejected the action (action failed but didn't raise), exclude it
+                logger.info(
+                    "  │  sim step | action='%s' | obs='%s'", action, cur_obs,
+                )
+                # If env rejected the action, exclude it from future steps
                 if obs_ret.get("success") is False or "already" in cur_obs.lower() or "not close to you" in cur_obs.lower():
                     failed_actions.append(action)
             except Exception as exc:
@@ -485,8 +711,34 @@ class ActionMCTSWrapper:
             action_history.append(action)
             obs_list.append(cur_obs)
 
+            # Partial reward signal: target object visible — log it but keep
+            # simulating so MCTS can reach the actual pick-up action.
+            if target_object and target_object in cur_obs.lower():
+                logger.info(
+                    "  │  sim object found | target='%s' | action='%s' | continuing sim",
+                    target_object, action,
+                )
+
+            # Fast-path: primitive action text matches subgoal
             if self._is_subgoal_satisfied(subgoal, action, cur_obs):
+                logger.info("  │  sim SUCCESS (text match) | action='%s'", action)
                 return 1.0 * sim_discount
+
+            # Real env signal: check transition reward and goal conditions met.
+            # This catches composite goals (e.g. 'find and pick up knife') where
+            # no single action text matches but the env knows conditions were met.
+            try:
+                transition_reward = self.env.get_transition_reward()
+                conditions_met, conditions_total = self.env.get_goal_conditions_met()
+                logger.info(
+                    "  │  env signal | transition_reward=%.3f | conditions=%d/%d",
+                    transition_reward, conditions_met, conditions_total,
+                )
+                if transition_reward > 0 and conditions_met > 0:
+                    logger.info("  │  sim SUCCESS (env reward) | action='%s'", action)
+                    return 1.0 * sim_discount
+            except Exception as exc:
+                logger.debug("env reward check failed: %s", exc)
 
         return -0.5 * sim_discount
 
@@ -515,16 +767,31 @@ class ActionMCTSWrapper:
         returns the best child of root via pure exploitation (C=0).
         """
         for i in range(self.budget):
+            logger.info(
+                "  ├─ inner iter %d/%d | subgoal='%s' | tree_nodes=%d",
+                i + 1, self.budget, subgoal,
+                sum(1 + len(c.children) for c in root.children) + 1,
+            )
             leaf = self._inner_tree_policy(root, restore_info)           # SELECT / EXPAND
+            logger.info(
+                "  │  SELECT/EXPAND → depth=%d | path=%s",
+                len(leaf.action_history), leaf.action_history,
+            )
             reward = self._inner_default_policy(leaf, subgoal, restore_info)  # SIMULATE
             self._inner_backup(leaf, reward)                             # BACKUP
-            logger.debug(
-                "Inner MCTS iter %d/%d | subgoal='%s' | leaf_depth=%d | reward=%.3f",
-                i + 1, self.budget, subgoal, len(leaf.action_history), reward,
+            logger.info(
+                "  │  SIMULATE reward=%.3f | BACKUP done",
+                reward,
             )
 
         best = self._inner_best_child(root, explore=False)  # exploit only
-        return best if best is not None else root
+        best_node = best if best is not None else root
+        logger.info(
+            "  └─ inner MCTS best | path=%s | Q/N=%.3f",
+            best_node.action_history,
+            best_node.quality_value / max(1, best_node.visit_count),
+        )
+        return best_node
 
     # -----------------------------------------------------------------------
     # LLM fallback greedy rollout (no tree, no restore — used when
@@ -532,7 +799,7 @@ class ActionMCTSWrapper:
     # -----------------------------------------------------------------------
 
     def _solve_with_reactexpand_rollout(
-        self, subgoal: str, obs: str
+        self, subgoal: str, obs: str, nl_inst: str = ""
     ) -> Tuple[bool, float, List[str]]:
         """Greedy LLM loop with no MCTS tree."""
         logger.info(
@@ -547,7 +814,13 @@ class ActionMCTSWrapper:
         except Exception:
             pass
 
-        nl_inst_info = {"nl_inst": subgoal, "message": None, "task_type": task_type, "depth": 0}
+        # Use original instruction if provided so the LLM knows both the
+        # overall task and the current subgoal. Fall back to subgoal alone.
+        if nl_inst and nl_inst != subgoal:
+            message = f"Current subgoal: {subgoal}"
+        else:
+            message = None
+        nl_inst_info = {"nl_inst": nl_inst if nl_inst else subgoal, "message": message, "task_type": task_type, "depth": 0}
         cur_obs = obs or "No observation available."
         action_history: List[str] = []
         action_prob_history: List[float] = []
@@ -627,17 +900,29 @@ class ActionMCTSWrapper:
         subgoal: str,
         obs: str,
         restore_info: Optional[Dict] = None,
+        nl_inst: str = "",
+        reactree_action: Optional[str] = None,
+        committed_history: Optional[List[str]] = None,
     ) -> Tuple[bool, float, List[str]]:
         """
         Solve one subgoal using inner MCTS.
 
         Parameters
         ----------
-        subgoal      : natural-language subgoal text
-        obs          : current env observation
-        restore_info : scene restore dict from OuterMCTSPlanner._sim_restore_info.
-                       When provided, enables full MCTS (SELECT→EXPAND→SIMULATE→BACKUP).
-                       When None, falls back to greedy LLM rollout.
+        subgoal           : natural-language subgoal text
+        obs               : current env observation (after committed_history actions)
+        restore_info      : scene restore dict from OuterMCTSPlanner._sim_restore_info.
+                            When provided, enables full MCTS (SELECT→EXPAND→SIMULATE→BACKUP).
+                            When None, falls back to greedy LLM rollout.
+        reactree_action   : optional primitive action suggested by the outer ReAcTree planner
+                            (e.g. "go to counter top 1").  Pre-seeded with prior=2.0 so
+                            UCT explores it first; inner MCTS then explores alternatives
+                            ranked by LLM reasoning over the current observation.
+        committed_history : actions already committed to the env before this MCTS call.
+                            _restore_and_replay replays these first so the MCTS tree
+                            starts from the correct current state rather than the
+                            subgoal-start state.  Each successive call from
+                            _execute_subgoal_with_reactree grows this list by one action.
 
         Returns
         -------
@@ -648,24 +933,43 @@ class ActionMCTSWrapper:
             return False, -1.0, []
 
         logger.info(
-            "Inner MCTS ENTRY | subgoal='%s' | mcts=%s | restore=%s",
-            sg, self._can_use_mcts_backend, restore_info is not None,
+            "Inner MCTS ENTRY | subgoal='%s' | mcts=%s | restore=%s | reactree_action='%s'",
+            sg, self._can_use_mcts_backend, restore_info is not None, reactree_action,
         )
+
+        # Store for use by _RolloutState in EXPAND and SIMULATE
+        self._current_subgoal = sg
+        self._current_nl_inst = nl_inst or sg
+        self._reactree_action = (reactree_action or "").strip() or None
+        # committed_history: actions already executed in the real env before this call.
+        # _inner_expand and _inner_default_policy prepend these to node.action_history
+        # before calling _restore_and_replay so each node is reached from the correct
+        # current state rather than the subgoal-start state.
+        self._committed_history: List[str] = list(committed_history or [])
 
         # Fall back to greedy if backend missing or no restore_info
         if not self._can_use_mcts_backend or restore_info is None:
             reason = "backend unavailable" if not self._can_use_mcts_backend else "no restore_info"
             logger.info("Inner MCTS using greedy fallback (%s) for '%s'", reason, sg)
-            return self._solve_with_reactexpand_rollout(sg, obs)
+            return self._solve_with_reactexpand_rollout(sg, obs, nl_inst=nl_inst)
 
-        # Build root node at subgoal-start state
+        # Build root node at subgoal-start state.
+        # Pre-seed root priors so the reactree_action is tried first and LLM reasoning
+        # over the initial observation informs the entire exploration budget.
         available = self._current_skill_set()
+        root_priors = self._llm_rank_candidates(
+            obs=obs or "No observation available.",
+            available_commands=available,
+            subgoal=sg,
+            reactree_action=self._reactree_action,
+        )
         root = self._InnerNode(
             action_history=[],
             obs_list=[obs or "No observation available."],
             available_commands=available,
             action_prob=1.0,
             parent=None,
+            action_priors=root_priors,
         )
 
         # Run full MCTS — explores the primitive action space
@@ -683,8 +987,9 @@ class ActionMCTSWrapper:
             return False, -1.0, []
 
         # Execute the best found path for real.
-        # Restore once more so we start from a clean subgoal-start state.
-        cur_obs, _ = self._restore_and_replay(restore_info, [])
+        # Restore to the committed state (not bare subgoal-start) so we continue
+        # from where the caller left off, not from the beginning.
+        cur_obs, _ = self._restore_and_replay(restore_info, self._committed_history)
         executed: List[str] = []
         success = False
 

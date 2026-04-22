@@ -13,7 +13,6 @@ import math
 import re
 from typing import Any, Dict, List, Optional, Tuple
 
-import alfred.utils as alfred_utils
 
 from .constants import (
     ALFRED_TERMINAL_ACTIONS,
@@ -61,6 +60,9 @@ class OuterMCTSPlanner:
         self._current_traj_data: Optional[Dict] = None
         self._cur_step_id: int = 1
         self._cur_decision_id: int = 1
+        # Original natural language instruction for the full task — forwarded to
+        # inner MCTS so the LLM prompt includes both task context and subgoal.
+        self._nl_inst: str = ""
         # Scene restore info for simulation — set by collect_llm_with_hmt so that
         # outer_default_policy can reset the environment to a clean initial state
         # before each outer MCTS simulation, making reward signals comparable.
@@ -230,25 +232,110 @@ class OuterMCTSPlanner:
         obs_text: str,
         task_type: str,
         depth: int,
+        available_skills: Optional[List[str]] = None,
+        avoid_subgoals: Optional[List[List[str]]] = None,
     ) -> Optional[DecompositionAction]:
-        """Ask the LLM for one Expand decomposition. Returns None if the LLM
-        chose Act/Error or failed to produce decomposition progress."""
-        nl_inst_info = {"nl_inst": goal, "message": None, "task_type": task_type, "depth": depth}
-        max_try = 6
+        """Call the LLM once and return a DecompositionAction if it outputs Expand.
+
+        We use plan_next_step() so the model can choose among Think/Act/Expand.
+        If it chooses Act/Error or does not produce decomposition progress, return
+        None so the caller can retry/fallback.
+
+        avoid_subgoals: subgoal lists already generated for this goal. When set,
+        a note is injected into the prompt so the LLM proposes a different plan
+        rather than deterministically repeating the same decomposition.
+        """
+        avoid_note = None
+        if avoid_subgoals:
+            tried = "; ".join("[" + ", ".join(sg) + "]" for sg in avoid_subgoals)
+            avoid_note = (
+                f"Already tried decomposition(s): {tried}. "
+                f"Propose a DIFFERENT decomposition with different subgoals."
+            )
+        nl_inst_info = {"nl_inst": goal, "message": avoid_note, "task_type": task_type, "depth": depth}
+        # Prefer the real available skills when provided so Act options match
+        # the environment affordances. Fall back to a minimal valid set.
+        skill_set = list(available_skills) if available_skills else ["done", "failure"]
+        # max_expand_tries counts only real Expand-or-terminal decisions.
+        # Think steps and recall actions (memory lookups) do NOT count against
+        # this budget — matching original ReactTree behaviour where the loop
+        # simply continues after recall regardless of position.
+        max_expand_tries = 2
+        expand_tries = 0
+        total_steps = 0
+        max_total_steps = 10  # hard cap to prevent infinite recall chains
+        current_obs_text = obs_text
+        self.logger.info(
+            "  ┌─ SEEK EXPAND | goal='%s' | depth=%d | max_expand_tries=%d | max_steps=%d",
+            goal, depth, max_expand_tries, max_total_steps,
+        )
         try:
-            self.llm_agent.reset(nl_inst_info, obs_text)
-            for attempt in range(max_try):
-                next_step_info = self.llm_agent.plan_expand_only()
+            self.llm_agent.reset(nl_inst_info, current_obs_text)
+            while expand_tries < max_expand_tries and total_steps < max_total_steps:
+                total_steps += 1
+                next_step_info = self.llm_agent.plan_next_step(skill_set)
+                self.logger.info(
+                    "plan_next_step raw response | goal='%s' | expand_try=%d/%d | payload=%s",
+                    goal,
+                    expand_tries + 1,
+                    max_expand_tries,
+                    next_step_info,
+                )
+                if not next_step_info:
+                    self.logger.warning(
+                        "plan_next_step returned empty response | goal='%s'", goal,
+                    )
+                    expand_tries += 1
+                    continue
                 next_step_class = next_step_info["next_step_class"]
                 next_step = next_step_info["next_step"]
                 self.logger.info(
-                    "LLM expand query | attempt=%d/%d | goal='%s' | class=%s",
-                    attempt + 1, max_try, goal, next_step_class,
+                    "LLM expand query | expand_try=%d/%d | goal='%s' | class=%s",
+                    expand_tries + 1, max_expand_tries, goal, next_step_class,
                 )
-                if next_step_class == "Expand":
+                if next_step_class == "Think":
+                    # Think steps don't count: keep looping like original ReactTree
+                    continue
+                elif next_step_class == "Act":
+                    act = str(next_step).strip()
+                    if act.startswith("recall location of "):
+                        # Recall is a memory lookup, not a terminal decision.
+                        # Feed result back to LLM and keep looping — same as
+                        # original ReactTree which never breaks on recall.
+                        from alfred.utils import recall_working_memory
+                        target_obj = act.split("recall location of ", 1)[1]
+                        recall_obs = recall_working_memory(self.env.working_memory, target_obj)
+                        self.llm_agent.add_obs(recall_obs)
+                        current_obs_text = recall_obs
+                        self.logger.info(
+                            "Recall during expand-candidate | target='%s' | obs='%s'",
+                            target_obj, recall_obs,
+                        )
+                        continue  # does NOT increment expand_tries
+                    else:
+                        # LLM chose Act instead of Expand — treat the goal as
+                        # primitive.  Return None so the outer MCTS primitive
+                        # fallback calls inner MCTS exactly once with the full
+                        # inner_budget to explore and rank primitive actions.
+                        # Continuing to seek Expand here would cause the same
+                        # subgoal to go through inner MCTS multiple times.
+                        self.logger.info(
+                            "LLM chose Act '%s' for goal='%s'; treating as primitive, "
+                            "deferring to inner MCTS with full budget",
+                            act, goal,
+                        )
+                        return None
+                elif next_step_class == "Expand":
+                    expand_tries += 1
                     control_flow = next_step["control_flow"]
                     raw_subgoals = next_step["conditions"].split(", ")
                     subgoals = [s.strip() for s in raw_subgoals if s.strip()]
+                    self.logger.info(
+                        "plan_next_step parsed Expand | goal='%s' | control_flow=%s | subgoals=%s",
+                        goal,
+                        control_flow,
+                        subgoals,
+                    )
                     if self._has_decomposition_progress(goal, subgoals):
                         self.logger.info(
                             "LLM decomposition | control_flow=%s | subgoals=%s | prior=0.80",
@@ -256,8 +343,6 @@ class OuterMCTSPlanner:
                         )
                         return DecompositionAction(control_flow, subgoals, prior_prob=0.80)
                     self.logger.info("LLM Expand had no decomposition progress, retrying")
-                elif next_step_class == "Think":
-                    continue
                 else:
                     self.logger.info(
                         "LLM chose '%s' instead of Expand for goal='%s'; no decomposition",
@@ -266,6 +351,10 @@ class OuterMCTSPlanner:
                     break
         except Exception as exc:
             self.logger.warning("_llm_generate_expand_candidate failed: %s", exc)
+        self.logger.info(
+            "  └─ SEEK EXPAND done | goal='%s' | result=None (no decomposition found)",
+            goal,
+        )
         return None
 
     def _generate_next_candidate(
@@ -277,13 +366,22 @@ class OuterMCTSPlanner:
 
         obs = state.env_snapshot.get("observation", "") if state.env_snapshot else ""
         task_type = state.env_snapshot.get("task_type", "unknown") if state.env_snapshot else "unknown"
+        available_skills = state.env_snapshot.get("skill_set", None) if state.env_snapshot else None
         seen_subgoal_keys = {self._candidate_subgoal_key(c) for c in state.generated_candidates}
 
         candidate: Optional[DecompositionAction] = None
-        for _ in range(4):
-            sampled = self._llm_generate_expand_candidate(state.goal, obs, task_type, state.depth)
+        seen_subgoal_lists = [list(c.subgoals) for c in state.generated_candidates]
+        for attempt in range(2):
+            sampled = self._llm_generate_expand_candidate(
+                state.goal,
+                obs,
+                task_type,
+                state.depth,
+                available_skills=available_skills,
+                avoid_subgoals=seen_subgoal_lists if attempt > 0 else None,
+            )
             if sampled is None:
-                continue
+                break
             if self._candidate_subgoal_key(sampled) in seen_subgoal_keys:
                 continue
             candidate = sampled
@@ -310,30 +408,6 @@ class OuterMCTSPlanner:
             candidate.subgoals,
         )
         return candidate
-
-    # def get_decomposition_candidates(
-    #     self, goal: str, observation: str
-    # ) -> List[DecompositionAction]:
-    #     """Generate up to decomp_candidate_count unique LLM decompositions."""
-    #     cleaned = goal.strip() if goal else "complete the task"
-    #     max_candidates = max(1, int(self.decomp_candidate_count))
-    #     final: List[DecompositionAction] = []
-    #     seen: set = set()
-
-    #     for _ in range(max_candidates * 4):
-    #         if len(final) >= max_candidates:
-    #             break
-    #         candidate = self._llm_generate_expand_candidate(cleaned, observation, "unknown", 0)
-    #         if candidate is None:
-    #             continue
-    #         key = self._candidate_subgoal_key(candidate)
-    #         if key in seen:
-    #             continue
-    #         seen.add(key)
-    #         final.append(candidate)
-
-    #     self.logger.info("Generated %d LLM candidates for goal: %s", len(final), cleaned)
-    #     return final
 
     # -----------------------------------------------------------------------
     # Reactree execution loop (used at execution time for primitive goals)
@@ -364,8 +438,8 @@ class OuterMCTSPlanner:
             obs = self.env.init_reset(traj_data)
             obs_text = obs["text"]
             self.llm_agent.reset(nl_inst_info, obs_text)
-            skill_set = [s for s in self.llm_agent.update_skill_set(obs)
-                         if not s.startswith("recall location of ")]
+            available_skill_set = self.llm_agent.update_skill_set(obs)
+            skill_set = [s for s in available_skill_set if not s.startswith("recall location of ")]
         except Exception as exc:
             self.logger.warning("_execute_subgoal_with_reactree init failed: %s", exc)
             return False, -0.5, 0, []
@@ -376,9 +450,12 @@ class OuterMCTSPlanner:
         max_try = 5
         current_obs_text = obs_text
         trajectory: List[str] = []
+        # committed_history grows by one action per Act step so each inner MCTS
+        # call starts from the current env state rather than the subgoal-start state.
+        committed_history: List[str] = []
 
         self.logger.info(
-            "ReactTree START | goal='%s' | depth=%d | obs='%.80s'", goal, depth, obs_text
+            "ReactTree START | goal='%s' | depth=%d | obs='%s'", goal, depth, obs_text
         )
 
         while True:
@@ -420,23 +497,52 @@ class OuterMCTSPlanner:
                     self.logger.info("Recall working memory | target='%s' | obs='%s'", target_obj, current_obs_text)
                     continue
                 else:
-                    act_success, act_reward, act_steps, act_trajectory = self.inner_mcts_solve_subgoal(
-                        act_goal, current_obs_text
+                    # Run inner MCTS with full budget (act_goal as seed).
+                    # solve_subgoal explores a full path via MCTS tree search
+                    # and commits ALL actions in best_path to the real env
+                    # before returning. We register the returned action_sequence
+                    # in trajectory/committed_history (no re-execution needed),
+                    # then return success immediately if the subgoal is done.
+                    inner_success, inner_reward, _, inner_actions = self.inner_mcts_solve_subgoal(
+                        goal, current_obs_text, reactree_action=act_goal,
+                        committed_history=committed_history,
                     )
-                    trajectory.extend(act_trajectory if act_trajectory else [act_goal])
-                    steps_taken += act_steps
-                    self._cur_step_id += act_steps
+                    self.logger.info(
+                        "ReactTree MCTS | goal='%s' | hint='%s' | success=%s | actions=%s",
+                        goal, act_goal, inner_success, inner_actions,
+                    )
+                    if not inner_actions:
+                        # MCTS found nothing — execute the hint directly as fallback
+                        try:
+                            obs_ret = self.env.llm_skill_interact(act_goal)
+                            current_obs_text = obs_ret.get("message", current_obs_text)
+                            trajectory.append(act_goal)
+                            committed_history.append(act_goal)
+                            steps_taken += 1
+                            self._cur_step_id += 1
+                        except Exception as exc:
+                            self.logger.warning("Fallback act failed | '%s': %s", act_goal, exc)
+                            return False, -1.0, steps_taken, trajectory
+                    else:
+                        # All inner_actions were already committed to the env by
+                        # solve_subgoal — just register them locally.
+                        for act in inner_actions:
+                            trajectory.append(act)
+                            committed_history.append(act)
+                            steps_taken += 1
+                            self._cur_step_id += 1
+                        if inner_success:
+                            return True, inner_reward, steps_taken, trajectory
+                    # Refresh observation after all committed actions
                     try:
                         scene_name = self.env.last_event.metadata.get("sceneName", "FloorPlan1")
                         obs_pack = self.env.llm_skill_interact(None, scene_name)
                         current_obs_text = obs_pack.get("message", current_obs_text)
                         self.llm_agent.add_obs(current_obs_text)
-                        skill_set = [s for s in self.llm_agent.update_skill_set(obs_pack)
-                                     if not s.startswith("recall location of ")]
+                        available_skill_set = self.llm_agent.update_skill_set(obs_pack)
+                        skill_set = [s for s in available_skill_set if not s.startswith("recall location of ")]
                     except Exception as exc:
-                        self.logger.warning("Failed to refresh obs after inner MCTS Act: %s", exc)
-                    if not act_success:
-                        return False, act_reward, steps_taken, trajectory
+                        self.logger.warning("Failed to refresh obs after MCTS actions: %s", exc)
 
             elif next_step_class == "Expand":
                 self._cur_decision_id += 1
@@ -447,7 +553,11 @@ class OuterMCTSPlanner:
                     "ReactTree nested Expand | goal='%s' | control_flow=%s | subgoals=%s",
                     goal, control_flow, subgoals,
                 )
-                sub_snapshot = {**env_snapshot, "observation": current_obs_text}
+                sub_snapshot = {
+                    **env_snapshot,
+                    "observation": current_obs_text,
+                    "skill_set": available_skill_set,
+                }
                 nested_node = self._make_goal_node(
                     goal=goal,
                     env_snapshot=sub_snapshot,
@@ -551,7 +661,14 @@ class OuterMCTSPlanner:
         subgoal_results: List[Dict[str, Any]] = []
         simulated_actions: List[str] = []
 
-        for subgoal in action.subgoals:
+        self.logger.info(
+            "  ┌─ EVALUATE DECOMP | control_flow=%s | subgoals=%s | depth=%d",
+            action.control_flow, action.subgoals, depth,
+        )
+        for idx, subgoal in enumerate(action.subgoals):
+            self.logger.info(
+                "  │  subgoal %d/%d: '%s'", idx + 1, len(action.subgoals), subgoal,
+            )
             result = self._simulate_goal(subgoal, env_snapshot=env_snapshot,
                                          depth=depth, action_history=action_history)
             subgoal_results.append(result)
@@ -580,6 +697,10 @@ class OuterMCTSPlanner:
         if action.control_flow == "fallback":
             overall_success = success_count > 0
 
+        self.logger.info(
+            "  └─ EVALUATE DECOMP done | success=%s | reward=%.3f | steps=%d | ok=%d fail=%d",
+            overall_success, total_reward, total_steps, success_count, fail_count,
+        )
         return {
             "success": overall_success,
             "reward": total_reward,
@@ -595,15 +716,25 @@ class OuterMCTSPlanner:
     # -----------------------------------------------------------------------
 
     def inner_mcts_solve_subgoal(
-        self, subgoal: str, current_obs: str
+        self, subgoal: str, current_obs: str,
+        reactree_action: Optional[str] = None,
+        committed_history: Optional[List[str]] = None,
     ) -> Tuple[bool, float, int, List[str]]:
+        self.logger.info(
+            "┌─ INNER MCTS START | subgoal='%s' | budget=%d | reactree_action='%s' | committed=%d",
+            subgoal, self.action_mcts.budget, reactree_action, len(committed_history or []),
+        )
         success, reward, action_sequence = self.action_mcts.solve_subgoal(
-            subgoal, current_obs, restore_info=self._sim_restore_info
+            subgoal, current_obs,
+            restore_info=self._sim_restore_info,
+            nl_inst=getattr(self, "_nl_inst", ""),
+            reactree_action=reactree_action,
+            committed_history=committed_history,
         )
         steps_used = len(action_sequence) if action_sequence else 1
         self.logger.info(
-            "Inner MCTS solve | subgoal='%s' | success=%s | reward=%.3f | steps=%d",
-            subgoal, success, reward, steps_used,
+            "└─ INNER MCTS END   | subgoal='%s' | success=%s | reward=%.3f | steps=%d | actions=%s",
+            subgoal, success, reward, steps_used, action_sequence,
         )
         return success, reward, steps_used, action_sequence
 
@@ -614,7 +745,6 @@ class OuterMCTSPlanner:
     def outer_tree_policy(self, node: NodeType) -> NodeType:
         while not self._is_state_terminal(node.get_state()):
             role = self._node_role(node)
-            state = node.get_state()
             if role == "decomposition":
                 return node
             if self._is_fully_expanded(node):
@@ -652,6 +782,7 @@ class OuterMCTSPlanner:
         )
         return child_node
 
+    
     def outer_expand_action(
         self, state: DecompositionState, tried_paths: List[List[str]]
     ) -> Optional[DecompositionAction]:
@@ -792,15 +923,19 @@ class OuterMCTSPlanner:
         )
         all_expand_nodes: List[NodeType] = []
         for i in range(self.outer_budget):
+            n_children = len(self._get_decomposition_children(node))
             self.logger.info(
-                "--- Outer MCTS iteration %d/%d | goal='%s' | decomp_children=%d ---",
-                i + 1, self.outer_budget, root_state.goal,
-                len(self._get_decomposition_children(node)),
+                "┌── OUTER MCTS iter %d/%d | goal='%s' | decomp_children=%d",
+                i + 1, self.outer_budget, root_state.goal, n_children,
             )
             expand_node = self.outer_tree_policy(node)
             all_expand_nodes.append(expand_node)
             reward, leaf_node = self.outer_default_policy(expand_node)
             self.outer_backup(leaf_node, reward)
+            self.logger.info(
+                "└── OUTER MCTS iter %d/%d done | reward=%.3f",
+                i + 1, self.outer_budget, reward,
+            )
 
         best_node = self.outer_best_child(node, is_exploration=False)
         best_action = getattr(best_node, "decomposition_action", None)

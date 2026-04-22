@@ -96,14 +96,17 @@ class AlfredReactreeWithHMT(AlfredReactree):
         try:
             init_obs = self.env.init_reset(traj_data)
             init_obs_text = init_obs["text"]
+            init_skill_set = self.llm_agent.update_skill_set(init_obs)
         except Exception:
             self.logger.exception("env.init_reset failed; using instruction as fallback obs")
             init_obs_text = nl_inst
+            init_skill_set = ["done", "failure"]
 
         # ---- Wire runtime state into the OuterMCTSPlanner ----
         self.outer_mcts._current_traj_data = traj_data
         self.outer_mcts._cur_step_id = 1
         self.outer_mcts._cur_decision_id = 1
+        self.outer_mcts._nl_inst = nl_inst  # forward to inner MCTS prompts
         # Store scene restore info so outer_default_policy can reset the environment
         # to this exact initial state before each simulation rollout.
         self.outer_mcts._sim_restore_info = {
@@ -121,6 +124,7 @@ class AlfredReactreeWithHMT(AlfredReactree):
             env_snapshot={
                 "observation": init_obs_text,
                 "task_type": traj_data.get("task_type", "unknown"),
+                "skill_set": init_skill_set,
             },
             depth=0,
             max_candidate_count=self.outer_mcts.decomp_candidate_count,

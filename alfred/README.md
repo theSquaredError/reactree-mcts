@@ -174,7 +174,8 @@ $ python scripts/docker_run.py --headless
 
   # start X server on DISPLAY 0
   # single X server should be sufficient for multiple instances of THOR
-  sudo python ~/alfred/scripts/startx.py 0  # if this throws errors e.g "(EE) Server terminated with error (1)" or "(EE) already running ..." try a display > 0
+  sudo python3 ~/alfred/scripts/startx.py 0  # if this throws errors e.g "(EE) Server terminated with error (1)" or "(EE) already running ..." try a display > 0
+  sudo python3 alfred/scripts/startx.py 0
 
   # detach from tmux shell
   # Ctrl+b then d

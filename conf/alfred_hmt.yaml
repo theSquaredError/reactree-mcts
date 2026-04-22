@@ -48,6 +48,6 @@ alfred:
 # HMT-specific settings
 hmt:
   outer_budget: 2           # outer MCTS simulations per decomposition state
-  inner_budget: 4       # inner MCTS simulations per subgoal
+  inner_budget: 4     # inner MCTS simulations per subgoal
   decomp_candidate_count: 3 # number of decomposition candidates to generate
   gamma: 0.95               # discount factor for MCTS backup

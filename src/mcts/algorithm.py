@@ -190,11 +190,11 @@ class MCTSAlgorithm:
         while len(action_candidates)==0:
             system, messages = self.prompt_template(state, available_commands)
             messages = [{"role": "system", "content": system}] + messages
-            self.logger.info(f'[LLM] messages passed to model: {messages}\n')
+            self.logger.info(f'[LLM] messages passed to model: {str(messages)[:200]}\n')
             action_candidates = self.LLM.chat(messages)
             
             self.logger.info(f"[PRE-FILTER] action_candidates: {action_candidates}")
-            self.logger.info(f"[AVAILABLE] available_commands: {available_commands}")
+            self.logger.debug(f"[AVAILABLE] available_commands: {available_commands}")
             self.logger.info(f"action_candidates: {action_candidates}, llm_count: {llm_count} ")
             action_candidates = {key: value for key, value in action_candidates.items() if key in available_commands}
             # --- DIAGNOSTIC LOGGING ---
