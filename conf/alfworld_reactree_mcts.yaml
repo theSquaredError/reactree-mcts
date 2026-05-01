@@ -1,0 +1,39 @@
+exp_type: evaluate
+task_planner: reactree
+dataset_type: alfworld
+
+name: ${dataset_type}-${task_planner}-mcts
+
+defaults:
+  - hydra: default.yaml
+  - llm_agent: default.yaml
+
+out_dir: ${hydra:run.dir}
+
+llm_agent:
+  model_name: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
+  agent_type: 'reactexpand'
+  ic_ex_select_type: 'simple_static'
+  working_memory: False
+  max_depth: 6
+  max_decisions: 100
+  max_steps: 150
+
+dataset:
+  eval_set: 'valid_seen'
+  train_set: 'train'
+
+prompt:
+  sys_prompt_root_dir: 'resource/alfworld/sys_prompt'
+
+alfworld:
+  # Leave data_root empty to auto-detect from alfworld.info.ALFWORLD_DATA
+  data_root: ''
+  config_path: 'config/base_config.yaml'
+  eval_portion_in_percent: 100
+  random_seed_for_eval_subset: 1
+
+reactree_mcts:
+  mcts_budget: 10
+  mcts_max_depth: 12
+  gamma: 0.95

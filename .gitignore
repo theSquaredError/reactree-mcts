@@ -17,6 +17,7 @@ src/alfred/__pycache__/*
 src/wah/__pycache__/*
 output/*
 outputs/*
+outputs/alfred-reactree/*
 essential_code.zip
 dataset/*
 

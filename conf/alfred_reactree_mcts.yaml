@@ -1,0 +1,51 @@
+exp_type: evaluate
+task_planner: reactree
+dataset_type: alfred
+
+name: ${dataset_type}-${task_planner}
+
+defaults:
+  - hydra: default.yaml
+  - llm_agent: default.yaml
+
+out_dir: ${hydra:run.dir}
+
+llm_agent:
+  model_name: 'meta-llama/Meta-Llama-3.1-8B'
+  agent_type: 'reactexpand'
+  ic_ex_select_type: 'simple_static'
+  working_memory: True
+  message_type: 'goal_information'
+  max_depth: 6
+  max_decisions: 100
+  max_steps: 150
+
+dataset:
+  train_set: 'train'
+  eval_set: 'valid_seen'
+
+  collect_ex_root_dir: 'resource/debug'
+  embedding_root_dir: ''
+  em_root_dir: ''
+  collect_dir: ''
+
+  task_selection_mode: True
+  check_success: False
+
+prompt:
+  num_examples: 6
+  sys_prompt_root_dir: 'resource/alfred/sys_prompt'
+  ic_ex_root_dir: 'resource/alfred/em_llm'
+
+alfred:
+  x_display: '1'
+  eval_portion_in_percent: 100
+  random_seed_for_eval_subset: 1
+  splits: 'alfred/data/splits/oct21.json'
+  diverse_task: False
+
+# ReactreeMCTS-specific settings
+reactree_mcts:
+  mcts_budget: 10       # MCTS iterations per primitive Act step; also controls rollout length in current code
+  mcts_max_depth: 12    # max tree depth for primitive-action search
+  gamma: 0.95           # discount factor for BACKUP
