@@ -1,0 +1,210 @@
+2026-04-28 07:13:21,579 - __main__ - INFO - ['/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-415/trial_T20190908_050518_595510/initial_state.pddl']
+2026-04-28 07:13:21,582 - __main__ - INFO - Selected task 1/1: /home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-415/trial_T20190908_050518_595510
+2026-04-28 07:13:45,486 - src.mcts.algorithm - INFO - Task: put some toiletpaper on toiletpaperhanger
+
+2026-04-28 07:13:45,486 - src.mcts.algorithm - INFO - Play round: 1
+2026-04-28 07:13:47,173 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:13:47,181 - src.llm.llm2 - INFO - [LLM] full response: go to towelholder 1
+2026-04-28 07:13:47,181 - src.llm.llm2 - INFO - [LLM] Raw output action: go to towelholder 1
+2026-04-28 07:13:47,181 - src.mcts.algorithm - INFO - action_candidates: {'go to towelholder 1': 0.0430221708401643, 'go to towelholder  ': 6.906039562762007e-11, 'go to towelholder १': 3.896120913913869e-12, 'go to towelholder １': 1.6241448330858114e-12, 'go to towelholder ১': 1.264885267828606e-12}, llm_count: 0 
+2026-04-28 07:13:47,181 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to towelholder 1
+2026-04-28 07:14:35,034 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:14:35,035 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:14:35,035 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:14:35,035 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999954854515508, 'take toiletpaper 1 from towelholder १': 2.172430127493677e-10, 'take toiletpaper 1 from towelholder ১': 7.991923812863791e-11, 'take toiletpaper 1 from towelholder  ': 2.2897245085266565e-11, 'take toiletpaper 1 from towelholder １': 1.7832392402583475e-11}, llm_count: 0 
+2026-04-28 07:14:35,035 - src.mcts.algorithm - INFO - [LLM inference] chosen action take toiletpaper 1 from towelholder 1
+2026-04-28 07:14:36,341 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:14:36,342 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:14:36,342 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:14:36,342 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.9999983015358325, 'go to toilet  ': 1.8189585981117974e-09, 'go to toilet १': 7.991946318896425e-11, 'go to toilet １': 3.775128132348347e-11, 'go to toilet ১': 3.775128132348347e-11}, llm_count: 0 
+2026-04-28 07:14:36,342 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 07:14:38,450 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:14:38,451 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:14:38,451 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:14:38,451 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.8420160740025802, 'go to toilet  ': 8.64066759937267e-11, 'go to toilet １': 1.1693871969145224e-11, 'go to toilet १': 9.107196646707052e-12, 'go to toilet ১': 2.0320902462829874e-12}, llm_count: 0 
+2026-04-28 07:14:38,451 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 07:15:26,153 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:15:26,155 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from toilet 1
+2026-04-28 07:15:26,155 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from toilet 1
+2026-04-28 07:15:26,155 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from toilet 1': 0.999999612774776, 'take toiletpaper 1 from toilet  ': 9.736196542907218e-10, 'take toiletpaper 1 from toilet १': 2.940076600812211e-11, 'take toiletpaper 1 from toilet ১': 1.573709601306001e-11, 'take toiletpaper 1 from toilet １': 8.423460492691009e-12}, llm_count: 0 
+2026-04-28 07:15:26,155 - src.mcts.algorithm - INFO - [LLM inference] chosen action take toiletpaper 1 from toilet 1
+2026-04-28 07:15:27,171 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:15:27,171 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger 1
+2026-04-28 07:15:27,171 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger 1
+2026-04-28 07:15:27,172 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger 1': 0.6035105200698421, 'go to toiletpaperhanger <|end|': 2.2490740245636547e-06, 'go to toiletpaperhanger 0': 1.1421740342371285e-05, 'go to toiletpaperhanger 2': 5.686549673056289e-07}, llm_count: 0 
+2026-04-28 07:15:27,871 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:15:27,871 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger 1
+2026-04-28 07:15:27,872 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger 1
+2026-04-28 07:15:27,872 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger 1': 0.5983506316443559, 'go to toiletpaperhanger <|end|': 2.52674469031734e-06, 'go to toiletpaperhanger 0': 1.2831868337401267e-05, 'go to toiletpaperhanger 2': 5.637929474047028e-07}, llm_count: 1 
+2026-04-28 07:15:28,674 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:15:28,675 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger 1
+2026-04-28 07:15:28,675 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger 1
+2026-04-28 07:15:28,675 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger 1': 0.5501105831246724, 'go to toiletpaperhanger <|end|': 2.0500710209612053e-06, 'go to toiletpaperhanger 0': 7.155450950308551e-06, 'go to toiletpaperhanger 2': 6.655606152149064e-07}, llm_count: 2 
+2026-04-28 07:15:29,449 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:15:29,449 - src.llm.llm2 - INFO - [LLM] full response: go to towelholder 1
+2026-04-28 07:15:29,449 - src.llm.llm2 - INFO - [LLM] Raw output action: go to towelholder 1
+2026-04-28 07:15:29,449 - src.mcts.algorithm - INFO - action_candidates: {'go to towelholder 1': 0.49991349039055727, 'go to towelholder  ': 9.093234861113414e-10, 'go to towelholder १': 2.1385238647266756e-11, 'go to towelholder １': 1.4697845246652794e-11, 'go to towelholder ১': 8.914693773806513e-12}, llm_count: 3 
+2026-04-28 07:15:29,450 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to towelholder 1
+2026-04-28 07:15:31,551 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:15:31,552 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:15:31,552 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:15:31,553 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.8483349618191909, 'go to toilet  ': 1.2666444151241583e-10, 'go to toilet １': 4.112192346357318e-11, 'go to toilet १': 1.9424621228567908e-11, 'go to toilet ১': 4.9113133800914085e-12}, llm_count: 0 
+2026-04-28 07:15:31,553 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 07:15:32,301 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:15:32,302 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 1
+2026-04-28 07:15:32,302 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 1
+2026-04-28 07:15:32,302 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 1': 0.6976370566870994, 'go to drawer 2': 0.0019595189010215095, 'go to drawer 4': 0.000925611188306392, 'go to drawer 3': 0.0005614115646808705, 'go to drawer 5': 3.7084869846290264e-08}, llm_count: 0 
+2026-04-28 07:15:32,302 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 1
+2026-04-28 07:16:19,472 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:16:19,474 - src.llm.llm2 - INFO - [LLM] full response: open drawer 1
+2026-04-28 07:16:19,474 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 1
+2026-04-28 07:16:19,474 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 1': 0.9964896524346203, 'open drawer 2': 1.8488788724227977e-07, 'open drawer 3': 9.024289834805024e-11, 'open drawer  ': 7.028123990009472e-11, 'open drawer １': 7.028123990009472e-11}, llm_count: 0 
+2026-04-28 07:16:19,474 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 1
+2026-04-28 07:16:20,646 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:16:20,647 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 2
+2026-04-28 07:16:20,647 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 2
+2026-04-28 07:16:20,647 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 2': 0.6176749383585489, 'go to drawer 3': 2.183943333068133e-05, 'go to drawer 4': 1.3961482627969394e-06, 'go to drawer  ': 2.8407200992833746e-10, 'go to drawer ２': 2.8407200992833746e-10}, llm_count: 0 
+2026-04-28 07:16:20,647 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 2
+2026-04-28 07:16:21,917 - src.mcts.algorithm - INFO - Play round: 1, Action: go to towelholder 1
+2026-04-28 07:16:25,031 - src.mcts.algorithm - INFO - Play round: 2
+2026-04-28 07:16:25,783 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:16:25,784 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:16:25,784 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:16:25,784 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999972734998374, 'take toiletpaper 1 from towelholder १': 2.4616902399982453e-10, 'take toiletpaper 1 from towelholder ১': 9.056052298277481e-11, 'take toiletpaper 1 from towelholder  ': 2.5946024240732474e-11, 'take toiletpaper 1 from towelholder １': 2.0206783996272106e-11}, llm_count: 0 
+2026-04-28 07:16:25,784 - src.mcts.algorithm - INFO - [LLM inference] chosen action take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:14,136 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:17:14,137 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:17:14,137 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:17:14,137 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.999997586315217, 'go to toilet  ': 3.850732628290435e-09, 'go to toilet १': 3.160873824942225e-10, 'go to toilet ১': 1.0261854862759178e-10, 'go to toilet １': 7.991940602881952e-11}, llm_count: 0 
+2026-04-28 07:17:14,137 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 07:17:16,298 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:17:16,299 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:16,299 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:16,299 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999971542964932, 'take toiletpaper 1 from towelholder १': 1.31764767736426e-10, 'take toiletpaper 1 from towelholder ১': 4.277775695653058e-11, 'take toiletpaper 1 from towelholder  ': 1.3887904343993462e-11, 'take toiletpaper 1 from towelholder １': 1.3887904343993462e-11}, llm_count: 0 
+2026-04-28 07:17:16,299 - src.mcts.algorithm - INFO - [LLM inference] chosen action take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:17,084 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:17:17,085 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:17,085 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:17,085 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999958134465414, 'take toiletpaper 1 from towelholder  ': 5.211390670031565e-10, 'take toiletpaper 1 from towelholder १': 1.9171634874172804e-10, 'take toiletpaper 1 from towelholder ১': 9.056039075922425e-11, 'take toiletpaper 1 from towelholder １': 2.020675449321009e-11}, llm_count: 0 
+2026-04-28 07:17:17,834 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:17:17,835 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:17,835 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:17,835 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999956198347071, 'take toiletpaper 1 from towelholder  ': 4.599035234029567e-10, 'take toiletpaper 1 from towelholder १': 1.4930881361956842e-10, 'take toiletpaper 1 from towelholder ১': 7.05284895833262e-11, 'take toiletpaper 1 from towelholder １': 2.150997402613193e-11}, llm_count: 1 
+2026-04-28 07:17:18,658 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:17:18,659 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:18,660 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:18,660 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999949790247343, 'take toiletpaper 1 from towelholder  ': 4.5990322869090153e-10, 'take toiletpaper 1 from towelholder १': 1.4930871794057255e-10, 'take toiletpaper 1 from towelholder ১': 6.224113371631582e-11, 'take toiletpaper 1 from towelholder １': 1.783238337174099e-11}, llm_count: 2 
+2026-04-28 07:17:19,996 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:17:19,996 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:19,997 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:19,997 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999950238191424, 'take toiletpaper 1 from towelholder  ': 6.691552792750168e-10, 'take toiletpaper 1 from towelholder १': 1.9171619735661246e-10, 'take toiletpaper 1 from towelholder ১': 7.991920123516098e-11, 'take toiletpaper 1 from towelholder １': 2.0206738537336298e-11}, llm_count: 3 
+2026-04-28 07:17:20,906 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:17:20,907 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:20,907 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:17:20,907 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.999995455837159, 'take toiletpaper 1 from towelholder  ': 5.211388806381563e-10, 'take toiletpaper 1 from towelholder १': 3.58173165423733e-10, 'take toiletpaper 1 from towelholder ১': 1.6918902343554595e-10, 'take toiletpaper 1 from towelholder １': 3.775117389452982e-11}, llm_count: 4 
+2026-04-28 07:17:20,907 - src.mcts.algorithm - INFO - random select go to drawer 2
+2026-04-28 07:18:09,032 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:18:09,033 - src.llm.llm2 - INFO - [LLM] full response: open drawer 2
+2026-04-28 07:18:09,033 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 2
+2026-04-28 07:18:09,033 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 2': 0.9999975415208362, 'open drawer 1': 1.522994230212476e-08, 'open drawer  two': 5.905289480877202e-10, 'open drawer  ': 5.211399675739525e-10, 'open drawer ２': 3.3647325212680184e-10}, llm_count: 0 
+2026-04-28 07:18:09,033 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 2
+2026-04-28 07:18:11,401 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:18:11,403 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:11,403 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:11,403 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999964390767694, 'take toiletpaper 1 from towelholder १': 2.1724321991871848e-10, 'take toiletpaper 1 from towelholder ১': 7.052854736348455e-11, 'take toiletpaper 1 from towelholder  ': 3.7751211013148004e-11, 'take toiletpaper 1 from towelholder １': 2.0206767135219436e-11}, llm_count: 0 
+2026-04-28 07:18:11,403 - src.mcts.algorithm - INFO - [LLM inference] chosen action take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:12,267 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:18:12,268 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:12,268 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:12,268 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999945470070233, 'take toiletpaper 1 from towelholder १': 1.4930865343623811e-10, 'take toiletpaper 1 from towelholder ১': 6.224110682690868e-11, 'take toiletpaper 1 from towelholder １': 1.5737016292555638e-11, 'take toiletpaper 1 from towelholder  ': 7.43364013654369e-12}, llm_count: 0 
+2026-04-28 07:18:13,041 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:18:13,042 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:13,042 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:13,042 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.999994785412962, 'take toiletpaper 1 from towelholder १': 1.493086890325019e-10, 'take toiletpaper 1 from towelholder ১': 5.4927597083317464e-11, 'take toiletpaper 1 from towelholder １': 1.573702004437424e-11, 'take toiletpaper 1 from towelholder  ': 1.2256003533769052e-11}, llm_count: 1 
+2026-04-28 07:18:14,061 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:18:14,061 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:14,062 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:14,062 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999950238191424, 'take toiletpaper 1 from towelholder  ': 6.691552792750168e-10, 'take toiletpaper 1 from towelholder १': 1.9171619735661246e-10, 'take toiletpaper 1 from towelholder ১': 7.991920123516098e-11, 'take toiletpaper 1 from towelholder １': 2.0206738537336298e-11}, llm_count: 2 
+2026-04-28 07:18:14,850 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:18:14,851 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:14,851 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:14,851 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999953814284556, 'take toiletpaper 1 from towelholder  ': 7.582525407314081e-10, 'take toiletpaper 1 from towelholder १': 1.691890108463529e-10, 'take toiletpaper 1 from towelholder ১': 9.056035163533379e-11, 'take toiletpaper 1 from towelholder １': 2.594597514886869e-11}, llm_count: 3 
+2026-04-28 07:18:16,011 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:18:16,012 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:16,012 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:18:16,012 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from towelholder 1': 0.9999955006316453, 'take toiletpaper 1 from towelholder  ': 5.211389039824109e-10, 'take toiletpaper 1 from towelholder १': 1.3176454984104134e-10, 'take toiletpaper 1 from towelholder ১': 6.224116618188432e-11, 'take toiletpaper 1 from towelholder １': 1.5737031299843686e-11}, llm_count: 4 
+2026-04-28 07:18:16,012 - src.mcts.algorithm - INFO - random select take scrubbrush 1 from towelholder 1
+2026-04-28 07:19:03,906 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:19:03,908 - src.llm.llm2 - INFO - [LLM] full response: put scrubbrush 1 in/on towelholder 1
+2026-04-28 07:19:03,908 - src.llm.llm2 - INFO - [LLM] Raw output action: put scrubbrush 1 in/on towelholder 1
+2026-04-28 07:19:03,909 - src.mcts.algorithm - INFO - action_candidates: {'put scrubbrush 1 in/on towelholder 1': 0.26802920891935444, 'put scrubbrush 1 in/on towelholder  ': 2.9570484158454845e-10, 'put scrubbrush 1 in/on towelholder 2': 1.8903778070968465e-11, 'put scrubbrush 1 in/on towelholder १': 1.8903778070968465e-11, 'put scrubbrush 1 in/on towelholder １': 6.954311312776844e-12}, llm_count: 0 
+2026-04-28 07:19:03,909 - src.mcts.algorithm - INFO - [LLM inference] chosen action put scrubbrush 1 in/on towelholder 1
+2026-04-28 07:19:05,112 - src.mcts.algorithm - INFO - Play round: 2, Action: take toiletpaper 1 from towelholder 1
+2026-04-28 07:19:08,221 - src.mcts.algorithm - INFO - Play round: 3
+2026-04-28 07:19:09,038 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:19:09,039 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:19:09,039 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:19:09,039 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.9999978247221077, 'go to toilet  ': 1.6052245633685113e-09, 'go to toilet १': 7.052864509138543e-11, 'go to toilet １': 3.7751263323123835e-11, 'go to toilet ১': 3.7751263323123835e-11}, llm_count: 0 
+2026-04-28 07:19:09,039 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 07:19:58,144 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:19:58,146 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:19:58,146 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:19:58,146 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.9999960366726083, 'go to toilet  ': 1.6052216931412904e-09, 'go to toilet १': 3.1608689267056423e-10, 'go to toilet ১': 9.056041097474872e-11, 'go to toilet １': 7.052851898240255e-11}, llm_count: 0 
+2026-04-28 07:19:58,146 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 07:19:58,829 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:19:58,830 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:19:58,830 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:19:58,830 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.648383618674701, 'go to toilet  ': 1.1793849612062846e-09, 'go to toilet १': 2.7736475784048562e-11, 'go to toilet １': 1.4846265650252213e-11, 'go to toilet ১': 1.4846265650252213e-11}, llm_count: 0 
+2026-04-28 07:19:59,565 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:19:59,566 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:19:59,566 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:19:59,567 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.997298280447174, 'go to toiletpaperh': 5.813715819878216e-05, 'go to toiletpaper hanger': 1.3672549113095552e-06, 'go to toiletpaperholder': 6.807167866384724e-08, 'go to toiletpaperhang': 2.5042171106458113e-08}, llm_count: 1 
+2026-04-28 07:20:00,273 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:00,274 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:20:00,274 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:20:00,274 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.9599804037399922, 'go to toilet  ': 6.423791517580161e-10, 'go to toilet १': 3.6240551839898395e-11, 'go to toilet １': 2.8224170151852716e-11, 'go to toilet ১': 1.9398169548140537e-11}, llm_count: 2 
+2026-04-28 07:20:01,077 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:01,077 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:20:01,078 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:20:01,078 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.9910592352127809, 'go to toiletpaperh': 4.4994033644745196e-05, 'go to toiletpaper hanger': 1.3587020856870696e-06, 'go to toiletpaperholder': 6.764572911963622e-08, 'go to toiletpaperhang': 2.4885473026166538e-08}, llm_count: 3 
+2026-04-28 07:20:01,979 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:01,980 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:20:01,980 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:20:01,980 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.9892021529535644, 'go to toiletpaperh': 4.490972221442559e-05, 'go to toiletpaper hanger': 1.3561561010988243e-06, 'go to toiletpaperholder': 6.751897213176267e-08, 'go to toiletpaperhang': 2.483884173630304e-08}, llm_count: 4 
+2026-04-28 07:20:01,980 - src.mcts.algorithm - INFO - random select go to garbagecan 1
+2026-04-28 07:20:51,421 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:51,424 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 07:20:51,425 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 07:20:51,425 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.9999978247220509, 'go to toilet  ': 2.6465678818758396e-09, 'go to toilet १': 1.1628207735582074e-10, 'go to toilet ১': 4.8473581618959976e-11, 'go to toilet １': 4.277778563591376e-11}, llm_count: 0 
+2026-04-28 07:20:51,425 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 07:20:52,183 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:52,183 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:20:52,183 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:20:52,184 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.9986785158910999, 'go to toiletpaperh': 2.7500049264963668e-05, 'go to toiletpaper hanger': 1.3691468328743728e-06, 'go to toiletpaperholder': 1.2735049331420743e-07, 'go to toiletpaperhang': 1.952984930499237e-08}, llm_count: 0 
+2026-04-28 07:20:52,950 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:52,951 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:20:52,951 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:20:52,951 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.9655481820053583, 'go to toiletpaperh': 4.383581235770589e-05, 'go to toiletpaper hanger': 1.699698898830056e-06, 'go to toiletpaperholder': 2.300292318901243e-07, 'go to toiletpaperhang': 2.424490266778038e-08}, llm_count: 1 
+2026-04-28 07:20:53,848 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:53,849 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:20:53,849 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:20:53,849 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.9643669806313058, 'go to toiletpaperh': 4.378221200215379e-05, 'go to toiletpaper hanger': 2.179787982247544e-06, 'go to toiletpaperholder': 2.950022239732358e-07, 'go to toiletpaperhang': 3.109300565080448e-08}, llm_count: 2 
+2026-04-28 07:20:54,618 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:54,619 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:20:54,619 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:20:54,619 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.40386965957762627, 'go to toiletpaperh': 3.0230374384003915e-05, 'go to toiletpaper hanger': 7.10950261895012e-07, 'go to toiletpaperholder': 8.491090006812298e-08, 'go to toiletpaperhang': 1.4755316018523605e-08}, llm_count: 3 
+2026-04-28 07:20:55,515 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:20:55,516 - src.llm.llm2 - INFO - [LLM] full response: go to toiletpaperhanger
+2026-04-28 07:20:55,516 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toiletpaperhanger
+2026-04-28 07:20:55,516 - src.mcts.algorithm - INFO - action_candidates: {'go to toiletpaperhanger': 0.9643669806313058, 'go to toiletpaperh': 4.378221200215379e-05, 'go to toiletpaper hanger': 2.179787982247544e-06, 'go to toiletpaperholder': 2.950022239732358e-07, 'go to toiletpaperhang': 3.109300565080448e-08}, llm_count: 4 
+2026-04-28 07:20:55,516 - src.mcts.algorithm - INFO - random select go to handtowelholder 1
+2026-04-28 07:21:43,807 - src.mcts.algorithm - INFO - Play round: 3, Action: go to toilet 1
+2026-04-28 07:21:46,924 - src.mcts.algorithm - INFO - Play round: 4
+2026-04-28 07:23:01,155 - __main__ - ERROR - An error occurred in task 1: 'NoneType' object has no attribute 'get_state'
+Traceback (most recent call last):
+  File "/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/src/main2.py", line 189, in run_mcts
+    mcts.execute_mcts(init_node, tree_data_path)
+  File "/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/src/mcts/algorithm.py", line 322, in execute_mcts
+    action = best_node.get_state().action_history[-1]
+AttributeError: 'NoneType' object has no attribute 'get_state'
+2026-04-28 07:23:01,158 - __main__ - INFO - Completed 1 tasks.

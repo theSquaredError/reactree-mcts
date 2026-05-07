@@ -1,0 +1,131 @@
+2026-04-28 06:53:31,654 - __main__ - INFO - ['/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-415/trial_T20190908_050518_595510/initial_state.pddl']
+2026-04-28 06:53:31,667 - __main__ - INFO - Selected task 1/1: /home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-415/trial_T20190908_050518_595510
+2026-04-28 06:53:58,164 - src.mcts.algorithm - INFO - Task: put some toiletpaper on toiletpaperhanger
+
+2026-04-28 06:53:58,165 - src.mcts.algorithm - INFO - Play round: 1
+2026-04-28 06:54:00,136 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:54:00,145 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 1
+2026-04-28 06:54:00,145 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 1
+2026-04-28 06:54:00,145 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 1': 0.2882498324168256, 'go to drawer 2': 0.002200814694662446, 'go to drawer 4': 0.0017139962075981678, 'go to drawer 3': 0.0009174360585551271, 'go to drawer 5': 5.34816265280448e-08}, llm_count: 0 
+2026-04-28 06:54:00,145 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 1
+2026-04-28 06:54:47,740 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:54:47,742 - src.llm.llm2 - INFO - [LLM] full response: open drawer 1
+2026-04-28 06:54:47,742 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 1
+2026-04-28 06:54:47,742 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 1': 0.9992873900868534, 'open drawer 2': 1.1245500281088542e-07, 'open drawer １': 6.219710439963142e-11, 'open drawer 3': 4.8439153611206874e-11, 'open drawer  ': 4.2747403025709485e-11}, llm_count: 0 
+2026-04-28 06:54:47,742 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 1
+2026-04-28 06:54:49,037 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:54:49,038 - src.llm.llm2 - INFO - [LLM] full response: close drawer 1
+2026-04-28 06:54:49,038 - src.llm.llm2 - INFO - [LLM] Raw output action: close drawer 1
+2026-04-28 06:54:49,038 - src.mcts.algorithm - INFO - action_candidates: {'close drawer 1': 0.433763632659171, 'close drawer  ': 7.889994292608652e-10, 'close drawer १': 1.760495690079966e-10, 'close drawer ১': 3.928196852681633e-11, 'close drawer 01': 2.5362345094525796e-11}, llm_count: 0 
+2026-04-28 06:54:49,038 - src.mcts.algorithm - INFO - [LLM inference] chosen action close drawer 1
+2026-04-28 06:54:51,208 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:54:51,209 - src.llm.llm2 - INFO - [LLM] full response: go to toilet 1
+2026-04-28 06:54:51,209 - src.llm.llm2 - INFO - [LLM] Raw output action: go to toilet 1
+2026-04-28 06:54:51,210 - src.mcts.algorithm - INFO - action_candidates: {'go to toilet 1': 0.49095160697827767, 'go to toilet  ': 3.4626226967282306e-11, 'go to toilet １': 1.273827702659934e-11, 'go to toilet १': 5.3101038885325456e-12, 'go to toilet ১': 1.3426045208577813e-12}, llm_count: 0 
+2026-04-28 06:54:51,210 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to toilet 1
+2026-04-28 06:55:39,279 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:55:39,280 - src.llm.llm2 - INFO - [LLM] full response: take toiletpaper 1 from toilet 1
+2026-04-28 06:55:39,280 - src.llm.llm2 - INFO - [LLM] Raw output action: take toiletpaper 1 from toilet 1
+2026-04-28 06:55:39,281 - src.mcts.algorithm - INFO - action_candidates: {'take toiletpaper 1 from toilet 1': 0.9999996871837232, 'take toiletpaper 1 from toilet  ': 2.646572811017805e-09, 'take toiletpaper 1 from toilet १': 1.1628229392720408e-10, 'take toiletpaper 1 from toilet ১': 7.052877644856543e-11, 'take toiletpaper 1 from toilet １': 2.9400768195803e-11}, llm_count: 0 
+2026-04-28 06:55:39,281 - src.mcts.algorithm - INFO - [LLM inference] chosen action take toiletpaper 1 from toilet 1
+2026-04-28 06:55:40,251 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:55:40,252 - src.llm.llm2 - INFO - [LLM] full response: go to towelholder 1
+2026-04-28 06:55:40,252 - src.llm.llm2 - INFO - [LLM] Raw output action: go to towelholder 1
+2026-04-28 06:55:40,252 - src.mcts.algorithm - INFO - action_candidates: {'go to towelholder 1': 0.37751792929856004, 'go to towelholder  ': 5.347952157596851e-10, 'go to towelholder १': 1.614941618271676e-11, 'go to towelholder １': 1.1099320601114656e-11, 'go to towelholder ১': 5.941038200542888e-12}, llm_count: 0 
+2026-04-28 06:55:40,252 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to towelholder 1
+2026-04-28 06:55:42,334 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:55:42,335 - src.llm.llm2 - INFO - [LLM] full response: go to dresser 1
+2026-04-28 06:55:42,335 - src.llm.llm2 - INFO - [LLM] Raw output action: go to dresser 1
+2026-04-28 06:55:42,335 - src.mcts.algorithm - INFO - action_candidates: {'go to dresser 1': 0.07410010072381162, 'go to dresser  ': 8.175138312081012e-11, 'go to dresser १': 2.654078824012875e-11, 'go to dresser ১': 8.616532387793271e-12, 'go to dresser １': 5.2261910736035254e-12}, llm_count: 0 
+2026-04-28 06:55:42,335 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to dresser 1
+2026-04-28 06:56:29,871 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:56:29,872 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 1
+2026-04-28 06:56:29,872 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 1
+2026-04-28 06:56:29,872 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 1': 0.9917089724973046, 'go to drawer 2': 0.0016894948019884571, 'go to drawer 3': 0.0006215304036175703, 'go to drawer 4': 0.0001223865929666746, 'go to drawer 5': 1.332897328675326e-08}, llm_count: 0 
+2026-04-28 06:56:29,872 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 1
+2026-04-28 06:56:30,917 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:56:30,918 - src.llm.llm2 - INFO - [LLM] full response: open drawer 1
+2026-04-28 06:56:30,919 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 1
+2026-04-28 06:56:30,920 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 1': 0.9999896741288624, 'open drawer 2': 1.344027116719383e-08, 'open drawer  ': 5.211358675514746e-10, 'open drawer １': 4.018568308407509e-11, 'open drawer १': 2.437384887198688e-11}, llm_count: 0 
+2026-04-28 06:56:30,920 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 1
+2026-04-28 06:56:32,223 - src.mcts.algorithm - INFO - Play round: 1, Action: go to drawer 1
+2026-04-28 06:56:35,331 - src.mcts.algorithm - INFO - Play round: 2
+2026-04-28 06:56:36,162 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:56:36,163 - src.llm.llm2 - INFO - [LLM] full response: open drawer 1
+2026-04-28 06:56:36,163 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 1
+2026-04-28 06:56:36,163 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 1': 0.9992873900868534, 'open drawer 2': 1.1245500281088542e-07, 'open drawer 3': 6.219710439963142e-11, 'open drawer １': 4.8439153611206874e-11, 'open drawer  ': 3.772445076372398e-11}, llm_count: 0 
+2026-04-28 06:56:36,163 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 1
+2026-04-28 06:57:24,711 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:57:24,712 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 2
+2026-04-28 06:57:24,713 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 2
+2026-04-28 06:57:24,713 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 2': 0.9558490991260593, 'go to drawer 3': 7.154705069699503e-05, 'go to drawer 4': 3.1435580174244363e-06, 'go to drawer  ': 5.64457923376756e-10, 'go to drawer ２': 3.0213255440550517e-10}, llm_count: 0 
+2026-04-28 06:57:24,713 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 2
+2026-04-28 06:57:26,741 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:57:26,742 - src.llm.llm2 - INFO - [LLM] full response: open drawer 1
+2026-04-28 06:57:26,743 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 1
+2026-04-28 06:57:26,743 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 1': 0.9964896524346203, 'open drawer 2': 1.8488788724227977e-07, 'open drawer 3': 9.024289834805024e-11, 'open drawer  ': 7.028123990009472e-11, 'open drawer １': 7.028123990009472e-11}, llm_count: 0 
+2026-04-28 06:57:26,743 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 1
+2026-04-28 06:57:27,519 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:57:27,519 - src.llm.llm2 - INFO - [LLM] full response: examine drawer 1
+2026-04-28 06:57:27,520 - src.llm.llm2 - INFO - [LLM] Raw output action: examine drawer 1
+2026-04-28 06:57:27,520 - src.mcts.algorithm - INFO - action_candidates: {'examine drawer 1': 0.6661504402835332, 'examine drawer 2': 2.1908079609707873e-06, 'examine drawer 3': 6.1535286820950225e-09, 'examine drawer  ': 1.3730378403138188e-09, 'examine drawer 4': 5.051123934018918e-10}, llm_count: 0 
+2026-04-28 06:57:27,520 - src.mcts.algorithm - INFO - [LLM inference] chosen action examine drawer 1
+2026-04-28 06:58:15,703 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:58:15,704 - src.llm.llm2 - INFO - [LLM] full response: take spraybottle 1 from drawer 1
+2026-04-28 06:58:15,705 - src.llm.llm2 - INFO - [LLM] Raw output action: take spraybottle 1 from drawer 1
+2026-04-28 06:58:15,705 - src.mcts.algorithm - INFO - action_candidates: {'take spraybottle 1 from drawer 1': 0.9975222271232083, 'take spraybottle 1 from drawer १': 4.83535802756605e-11, 'take spraybottle 1 from drawer  ': 4.267188482214598e-11, 'take spraybottle 1 from drawer ১': 1.5698109142103214e-11, 'take spraybottle 1 from drawer １': 1.0789142110658085e-11}, llm_count: 0 
+2026-04-28 06:58:15,705 - src.mcts.algorithm - INFO - [LLM inference] chosen action take spraybottle 1 from drawer 1
+2026-04-28 06:58:17,754 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:58:17,755 - src.llm.llm2 - INFO - [LLM] full response: open drawer 1
+2026-04-28 06:58:17,755 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 1
+2026-04-28 06:58:17,755 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 1': 0.9964896524346203, 'open drawer 2': 2.3740074645678446e-07, 'open drawer 3': 1.158741751544647e-10, 'open drawer  ': 1.158741751544647e-10, 'open drawer １': 7.963907827241084e-11}, llm_count: 0 
+2026-04-28 06:58:17,755 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 1
+2026-04-28 06:58:18,466 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:58:18,466 - src.llm.llm2 - INFO - [LLM] full response: examine drawer 1
+2026-04-28 06:58:18,467 - src.llm.llm2 - INFO - [LLM] Raw output action: examine drawer 1
+2026-04-28 06:58:18,467 - src.mcts.algorithm - INFO - action_candidates: {'examine drawer 1': 0.8131299986821467, 'examine drawer 2': 8.68182328324497e-07, 'examine drawer 3': 3.1311513945753466e-09, 'examine drawer  ': 1.4790511903657773e-09, 'examine drawer 4': 2.9124244760768254e-10}, llm_count: 0 
+2026-04-28 06:58:18,467 - src.mcts.algorithm - INFO - [LLM inference] chosen action examine drawer 1
+2026-04-28 06:58:19,262 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:58:19,263 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 2
+2026-04-28 06:58:19,263 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 2
+2026-04-28 06:58:19,263 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 2': 0.6190236500095426, 'go to drawer 3': 0.00030214251157941493, 'go to drawer 4': 1.704570595525801e-05, 'go to drawer 5': 2.103609238614684e-09, 'go to drawer  ': 8.237852141708073e-10}, llm_count: 0 
+2026-04-28 06:58:19,263 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 2
+2026-04-28 06:59:07,433 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:59:07,434 - src.llm.llm2 - INFO - [LLM] full response: open drawer 2
+2026-04-28 06:59:07,435 - src.llm.llm2 - INFO - [LLM] Raw output action: open drawer 2
+2026-04-28 06:59:07,435 - src.mcts.algorithm - INFO - action_candidates: {'open drawer 2': 0.9978020083087265, 'open drawer 1': 3.052300816084891e-07, 'open drawer  ': 3.3907999199561226e-09, 'open drawer 3': 1.8149644089777918e-09, 'open drawer  two': 1.1008315603322498e-09}, llm_count: 0 
+2026-04-28 06:59:07,435 - src.mcts.algorithm - INFO - [LLM inference] chosen action open drawer 2
+2026-04-28 06:59:08,804 - src.mcts.algorithm - INFO - Play round: 2, Action: open drawer 1
+2026-04-28 06:59:11,917 - src.mcts.algorithm - INFO - Play round: 3
+2026-04-28 06:59:12,712 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 06:59:12,713 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 2
+2026-04-28 06:59:12,713 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 2
+2026-04-28 06:59:12,713 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 2': 0.913803293507716, 'go to drawer 3': 6.839987797406061e-05, 'go to drawer 4': 3.4054294010481067e-06, 'go to drawer  ': 5.396288554782221e-10, 'go to drawer ２': 2.888425120533409e-10}, llm_count: 0 
+2026-04-28 06:59:12,713 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 2
+2026-04-28 07:00:03,160 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:00:03,161 - src.llm.llm2 - INFO - [LLM] full response: close drawer 1
+2026-04-28 07:00:03,161 - src.llm.llm2 - INFO - [LLM] Raw output action: close drawer 1
+2026-04-28 07:00:03,161 - src.mcts.algorithm - INFO - action_candidates: {'close drawer 1': 0.3746926328686582, 'close drawer  ': 6.014671263521326e-10, 'close drawer १': 1.0451931440201722e-10, 'close drawer ১': 2.813099184298054e-11, 'close drawer 01': 1.9334129095436818e-11}, llm_count: 0 
+2026-04-28 07:00:03,161 - src.mcts.algorithm - INFO - [LLM inference] chosen action close drawer 1
+2026-04-28 07:00:53,356 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:00:53,358 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 2
+2026-04-28 07:00:53,358 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 2
+2026-04-28 07:00:53,358 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 2': 0.9137976975540564, 'go to drawer 3': 6.83994591065098e-05, 'go to drawer 4': 3.4054085468607175e-06, 'go to drawer  ': 5.396255508960542e-10, 'go to drawer ２': 2.549010612477401e-10}, llm_count: 0 
+2026-04-28 07:00:53,358 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 2
+2026-04-28 07:00:54,187 - httpx - INFO - HTTP Request: POST https://ctonpeumraopenai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2026-04-28 07:00:54,188 - src.llm.llm2 - INFO - [LLM] full response: go to drawer 3
+2026-04-28 07:00:54,188 - src.llm.llm2 - INFO - [LLM] Raw output action: go to drawer 3
+2026-04-28 07:00:54,188 - src.mcts.algorithm - INFO - action_candidates: {'go to drawer 3': 0.7457194733536612, 'go to drawer 2': 0.006451737758729686, 'go to drawer 4': 0.0014395772793410265, 'go to drawer  ': 1.7416972562802133e-09, 'go to drawer ３': 4.99004618602513e-10}, llm_count: 0 
+2026-04-28 07:00:54,188 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to drawer 3
+2026-04-28 07:01:42,817 - src.mcts.algorithm - INFO - Play round: 3, Action: go to drawer 2
+2026-04-28 07:01:45,932 - src.mcts.algorithm - INFO - Play round: 4
+2026-04-28 07:03:00,692 - src.mcts.algorithm - INFO - visualizer error
+2026-04-28 07:03:00,692 - __main__ - ERROR - An error occurred in task 1: 'NoneType' object has no attribute 'get_state'
+Traceback (most recent call last):
+  File "/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/src/main2.py", line 189, in run_mcts
+    mcts.execute_mcts(init_node, tree_data_path)
+  File "/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/src/mcts/algorithm.py", line 322, in execute_mcts
+    action = best_node.get_state().action_history[-1]
+AttributeError: 'NoneType' object has no attribute 'get_state'
+2026-04-28 07:03:00,694 - __main__ - INFO - Completed 1 tasks.
+2026-04-28 07:03:00,694 - __main__ - INFO - Starting Flask application

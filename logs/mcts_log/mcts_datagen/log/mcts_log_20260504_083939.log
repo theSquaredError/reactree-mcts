@@ -1,0 +1,75 @@
+2026-05-04 08:39:39,852 - __main__ - INFO - problems: ['/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_cool_then_place_in_recep-LettuceSliced-None-SinkBasin-15/trial_T20190909_101835_683416/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_two_obj_and_place-SoapBottle-None-Drawer-415/trial_T20190907_161729_798002/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/look_at_obj_in_light-Box-None-DeskLamp-205/trial_T20190907_074425_330493/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_heat_then_place_in_recep-Tomato-None-Fridge-23/trial_T20190909_082320_103350/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_heat_then_place_in_recep-AppleSliced-None-Fridge-18/trial_T20190911_045200_839773/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/look_at_obj_in_light-KeyChain-None-DeskLamp-327/trial_T20190906_202601_548273/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_heat_then_place_in_recep-Plate-None-Cabinet-1/trial_T20190908_070946_578973/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_heat_then_place_in_recep-AppleSliced-None-DiningTable-17/trial_T20190918_205656_000147/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/look_at_obj_in_light-RemoteControl-None-FloorLamp-202/trial_T20190908_232929_254246/initial_state.pddl', '/home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_heat_then_place_in_recep-BreadSliced-None-Fridge-19/trial_T20190908_070424_700178/initial_state.pddl']
+2026-05-04 08:39:39,854 - __main__ - INFO - Selected task 1/100: /home/azureuser/vikas/Embodied-Agent-Planning/mcts_datagen/data/json_2.1.1/valid_seen/pick_cool_then_place_in_recep-LettuceSliced-None-SinkBasin-15/trial_T20190909_101835_683416
+2026-05-04 08:40:00,134 - src.mcts.algorithm - INFO - [algorithm] Task: cool some sliced lettuce and put it in sinkbasin
+
+2026-05-04 08:40:00,135 - src.mcts.algorithm - INFO - Play round: 1
+2026-05-04 08:40:00,135 - src.mcts.algorithm - INFO - [def m_c_t_s] iteration: 0/3
+2026-05-04 08:40:00,135 - src.mcts.algorithm - INFO - [def tree_policy] [node not fully expanded] expanding with def expand
+2026-05-04 08:40:00,831 - src.mcts.algorithm - INFO - action_candidates: {'go to fridge 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:00,832 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to fridge 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:00,832 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to fridge 1
+2026-05-04 08:40:42,118 - src.mcts.algorithm - INFO - action_candidates: {'open fridge 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:42,118 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'open fridge 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:42,118 - src.mcts.algorithm - INFO - [LLM inference] chosen action open fridge 1
+2026-05-04 08:40:42,727 - src.mcts.algorithm - INFO - action_candidates: {'go to cabinet 11': 1.0}, llm_count: 0 
+2026-05-04 08:40:42,727 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to cabinet 11': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:42,727 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to cabinet 11
+2026-05-04 08:40:43,306 - src.mcts.algorithm - INFO - action_candidates: {'go to countertop 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:43,306 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to countertop 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:43,306 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to countertop 1
+2026-05-04 08:40:43,959 - src.mcts.algorithm - INFO - action_candidates: {'take fork 2 from countertop 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:43,959 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'take fork 2 from countertop 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:43,959 - src.mcts.algorithm - INFO - [LLM inference] chosen action take fork 2 from countertop 1
+2026-05-04 08:40:44,444 - src.mcts.algorithm - INFO - action_candidates: {'go to sinkbasin 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:44,445 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to sinkbasin 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:44,445 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to sinkbasin 1
+2026-05-04 08:40:45,180 - src.mcts.algorithm - INFO - action_candidates: {'put fork 2 in/on sinkbasin 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:45,180 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'put fork 2 in/on sinkbasin 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:45,180 - src.mcts.algorithm - INFO - [LLM inference] chosen action put fork 2 in/on sinkbasin 1
+2026-05-04 08:40:45,739 - src.mcts.algorithm - INFO - action_candidates: {'go to fridge 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:45,739 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to fridge 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:45,739 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to fridge 1
+2026-05-04 08:40:46,273 - src.mcts.algorithm - INFO - action_candidates: {'take nothing from fridge 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:46,273 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'take nothing from fridge 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:46,273 - src.mcts.algorithm - INFO - [LLM inference] chosen action take nothing from fridge 1
+2026-05-04 08:40:46,592 - src.mcts.algorithm - INFO - action_candidates: {'go to countertop 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:46,592 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to countertop 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:46,592 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to countertop 1
+2026-05-04 08:40:47,292 - src.mcts.algorithm - INFO - action_candidates: {'take cup 1 from countertop 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:47,292 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'take cup 1 from countertop 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:47,292 - src.mcts.algorithm - INFO - [LLM inference] chosen action take cup 1 from countertop 1
+2026-05-04 08:40:47,808 - src.mcts.algorithm - INFO - action_candidates: {'go to sinkbasin 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:47,808 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to sinkbasin 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:47,808 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to sinkbasin 1
+2026-05-04 08:40:48,575 - src.mcts.algorithm - INFO - action_candidates: {'put cup 1 in/on sinkbasin 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:48,575 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'put cup 1 in/on sinkbasin 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:48,575 - src.mcts.algorithm - INFO - [LLM inference] chosen action put cup 1 in/on sinkbasin 1
+2026-05-04 08:40:49,143 - src.mcts.algorithm - INFO - action_candidates: {'go to countertop 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:49,143 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to countertop 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:49,143 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to countertop 1
+2026-05-04 08:40:49,831 - src.mcts.algorithm - INFO - action_candidates: {'take plate 1 from countertop 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:49,831 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'take plate 1 from countertop 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:49,831 - src.mcts.algorithm - INFO - [LLM inference] chosen action take plate 1 from countertop 1
+2026-05-04 08:40:50,295 - src.mcts.algorithm - INFO - action_candidates: {'go to cabinet 3': 1.0}, llm_count: 0 
+2026-05-04 08:40:50,295 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to cabinet 3': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:50,295 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to cabinet 3
+2026-05-04 08:40:50,837 - src.mcts.algorithm - INFO - action_candidates: {'open cabinet 3': 1.0}, llm_count: 0 
+2026-05-04 08:40:50,837 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'open cabinet 3': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:50,837 - src.mcts.algorithm - INFO - [LLM inference] chosen action open cabinet 3
+2026-05-04 08:40:51,549 - src.mcts.algorithm - INFO - action_candidates: {'close cabinet 3': 1.0}, llm_count: 0 
+2026-05-04 08:40:51,549 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'close cabinet 3': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:51,549 - src.mcts.algorithm - INFO - [LLM inference] chosen action close cabinet 3
+2026-05-04 08:40:52,259 - src.mcts.algorithm - INFO - action_candidates: {'go to sinkbasin 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:52,259 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to sinkbasin 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:52,259 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to sinkbasin 1
+2026-05-04 08:40:53,038 - src.mcts.algorithm - INFO - action_candidates: {'put plate 1 in/on sinkbasin 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:53,039 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'put plate 1 in/on sinkbasin 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:53,039 - src.mcts.algorithm - INFO - [LLM inference] chosen action put plate 1 in/on sinkbasin 1
+2026-05-04 08:40:54,226 - src.mcts.algorithm - INFO - [def m_c_t_s] iteration: 1/3
+2026-05-04 08:40:54,226 - src.mcts.algorithm - INFO - [def tree_policy] [node not fully expanded] expanding with def expand
+2026-05-04 08:40:54,466 - src.mcts.algorithm - INFO - action_candidates: {'go to fridge 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:54,466 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to fridge 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:54,466 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to fridge 1
+2026-05-04 08:40:54,741 - src.mcts.algorithm - INFO - action_candidates: {'go to countertop 1': 1.0}, llm_count: 0 
+2026-05-04 08:40:54,741 - src.mcts.algorithm - INFO - action_candidates availabe in available_commands: {'go to countertop 1': 1.0}, len(action_candidates): 1
+2026-05-04 08:40:54,741 - src.mcts.algorithm - INFO - [LLM inference] chosen action go to countertop 1
