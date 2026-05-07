@@ -1,0 +1,131 @@
+2026-05-03 05:17:31,888 [DEBUG] ai2thor.controller | /home/azureuser/.ai2thor/releases/thor-201909061227-Linux64/thor-201909061227-Linux64 exists - skipping download
+2026-05-03 05:17:43,935 [INFO] __main__ | Task          : put a peppershaker in drawer
+2026-05-03 05:17:43,935 [INFO] __main__ | Init obs      : -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a
+2026-05-03 05:17:43,935 [INFO] __main__ | Available cmds: ['go to fridge 1', 'go to cabinet 1', 'go to countertop 1', 'go to toaster 1', 'go to coffeemachine 1'] ...
+2026-05-03 05:17:43,936 [INFO] src.rm.alfworld_reactree | cur_step_id:1 | cur_decision_id: 1
+2026-05-03 05:17:43,936 [INFO] src.rm.alfworld_reactree | task_desc: put a peppershaker in drawer| task_type: pick_and_place_simple | current_obs: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+2026-05-03 05:17:43,936 [INFO] src.rm.alfworld_reactree | LLM reset | subgoal=put a peppershaker in drawer | is_child=False
+2026-05-03 05:17:43,936 [INFO] src.rm.rm_llm_agent | ---- LLM INPUT (2 messages) ----
+2026-05-03 05:17:43,936 [INFO] src.rm.rm_llm_agent | [0] role=system | You are a robot decision-making agent. For the given goal, choose exactly one of: Think, Act, or Expand.
+
+If Think:
+Think: <one sentence of reasoning>
+
+If Act:
+Act: <exact action from Available actions>
+Use "done" if the goal is achieved, "failure" if it cannot be completed.
+
+If Expand:
+Expand:
+- control flow: <sequence | fallback | parallel>
+- subgoals: <subgoal1>, <subgoal2>, ...
+
+Rules:
+- Always start your response with exactly "Think:", "Act:", or "Expand:" (colon required).
+- Output only the chosen block. No explanations, no extra text.
+- For Expand, list subgoal names only — do not describe or expand them further.
+- Control flow meanings: sequence (stop on first failure), fallback (stop on first success), parallel (all must succeed).
+
+2026-05-03 05:17:43,936 [INFO] src.rm.rm_llm_agent | [1] role=user | Current observation: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+Available actions: go to fridge 1, go to cabinet 1, go to countertop 1, go to toaster 1, go to coffeemachine 1, go to countertop 2, go to cabinet 2, go to stoveburner 1, go to stoveburner 2, go to cabinet 3, go to cabinet 4, go to microwave 1, go to countertop 3, go to sink 1, go to sinkbasin 1, go to shelf 1, go to shelf 2, go to drawer 1, go to drawer 2, go to drawer 3, go to shelf 3, go to stoveburner 3, go to stoveburner 4, go to garbagecan 1, inventory, look
+Your task is to: put a peppershaker in drawer
+2026-05-03 05:17:43,936 [INFO] src.rm.rm_llm_agent | ---------------------------------
+2026-05-03 05:17:45,447 [INFO] src.rm.rm_llm_agent | ---- LLM OUTPUT ----
+2026-05-03 05:17:45,448 [INFO] src.rm.rm_llm_agent | Expand:
+- control flow: sequence
+- subgoals: get peppershaker, go to drawer 1
+2026-05-03 05:17:45,448 [INFO] src.rm.rm_llm_agent | --------------------
+2026-05-03 05:17:45,448 [INFO] src.rm.alfworld_reactree | Expand: {'control_flow': 'sequence', 'conditions': ['get peppershaker', 'go to drawer 1']}
+2026-05-03 05:17:45,448 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [1/2] | depth=2 | subgoal='get peppershaker'
+2026-05-03 05:17:45,449 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [2/2] | depth=2 | subgoal='go to drawer 1'
+2026-05-03 05:17:45,449 [INFO] src.rm.alfworld_reactree | cur_step_id:1 | cur_decision_id: 2
+2026-05-03 05:17:45,449 [INFO] src.rm.alfworld_reactree | task_desc: get peppershaker| task_type: pick_and_place_simple | current_obs: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+2026-05-03 05:17:45,449 [INFO] src.rm.alfworld_reactree | LLM reset | subgoal=get peppershaker | is_child=True
+2026-05-03 05:17:45,449 [INFO] src.rm.rm_llm_agent | ---- LLM INPUT (2 messages) ----
+2026-05-03 05:17:45,449 [INFO] src.rm.rm_llm_agent | [0] role=system | You are a robot decision-making agent. For the given goal, choose exactly one of: Think, Act, or Expand.
+
+If Think:
+Think: <one sentence of reasoning>
+
+If Act:
+Act: <exact action from Available actions>
+Use "done" if the goal is achieved, "failure" if it cannot be completed.
+
+If Expand:
+Expand:
+- control flow: <sequence | fallback | parallel>
+- subgoals: <subgoal1>, <subgoal2>, ...
+
+Rules:
+- Always start your response with exactly "Think:", "Act:", or "Expand:" (colon required).
+- Output only the chosen block. No explanations, no extra text.
+- For Expand, list subgoal names only — do not describe or expand them further.
+- Control flow meanings: sequence (stop on first failure), fallback (stop on first success), parallel (all must succeed).
+
+2026-05-03 05:17:45,449 [INFO] src.rm.rm_llm_agent | [1] role=user | Your primary goal is to: put a peppershaker in drawer
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: get peppershaker, and go to drawer 1.
+Current observation: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+Available actions: go to fridge 1, go to cabinet 1, go to countertop 1, go to toaster 1, go to coffeemachine 1, go to countertop 2, go to cabinet 2, go to stoveburner 1, go to stoveburner 2, go to cabinet 3, go to cabinet 4, go to microwave 1, go to countertop 3, go to sink 1, go to sinkbasin 1, go to shelf 1, go to shelf 2, go to drawer 1, go to drawer 2, go to drawer 3, go to shelf 3, go to stoveburner 3, go to stoveburner 4, go to garbagecan 1, inventory, look
+Your task is to: get peppershaker
+2026-05-03 05:17:45,449 [INFO] src.rm.rm_llm_agent | ---------------------------------
+2026-05-03 05:17:46,608 [INFO] src.rm.rm_llm_agent | ---- LLM OUTPUT ----
+2026-05-03 05:17:46,608 [INFO] src.rm.rm_llm_agent | Expand:
+- control flow: sequence
+- subgoals: get peppershaker, go to drawer 1
+2026-05-03 05:17:46,608 [INFO] src.rm.rm_llm_agent | --------------------
+2026-05-03 05:17:46,608 [INFO] src.rm.alfworld_reactree | Expand: {'control_flow': 'sequence', 'conditions': ['get peppershaker', 'go to drawer 1']}
+2026-05-03 05:17:46,608 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [1/2] | depth=4 | subgoal='get peppershaker'
+2026-05-03 05:17:46,608 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [2/2] | depth=4 | subgoal='go to drawer 1'
+2026-05-03 05:17:46,608 [INFO] src.rm.alfworld_reactree | cur_step_id:1 | cur_decision_id: 3
+2026-05-03 05:17:46,608 [INFO] src.rm.alfworld_reactree | task_desc: get peppershaker| task_type: pick_and_place_simple | current_obs: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+2026-05-03 05:17:46,608 [INFO] src.rm.alfworld_reactree | LLM reset | subgoal=get peppershaker | is_child=True
+2026-05-03 05:17:46,608 [INFO] src.rm.rm_llm_agent | ---- LLM INPUT (2 messages) ----
+2026-05-03 05:17:46,608 [INFO] src.rm.rm_llm_agent | [0] role=system | You are a robot decision-making agent. For the given goal, choose exactly one of: Think, Act, or Expand.
+
+If Think:
+Think: <one sentence of reasoning>
+
+If Act:
+Act: <exact action from Available actions>
+Use "done" if the goal is achieved, "failure" if it cannot be completed.
+
+If Expand:
+Expand:
+- control flow: <sequence | fallback | parallel>
+- subgoals: <subgoal1>, <subgoal2>, ...
+
+Rules:
+- Always start your response with exactly "Think:", "Act:", or "Expand:" (colon required).
+- Output only the chosen block. No explanations, no extra text.
+- For Expand, list subgoal names only — do not describe or expand them further.
+- Control flow meanings: sequence (stop on first failure), fallback (stop on first success), parallel (all must succeed).
+
+2026-05-03 05:17:46,609 [INFO] src.rm.rm_llm_agent | [1] role=user | Your primary goal is to: get peppershaker
+To achieve this, you should perform your sibling tasks in sequence. At this level, your sibling tasks are: get peppershaker, and go to drawer 1.
+Current observation: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+Available actions: go to fridge 1, go to cabinet 1, go to countertop 1, go to toaster 1, go to coffeemachine 1, go to countertop 2, go to cabinet 2, go to stoveburner 1, go to stoveburner 2, go to cabinet 3, go to cabinet 4, go to microwave 1, go to countertop 3, go to sink 1, go to sinkbasin 1, go to shelf 1, go to shelf 2, go to drawer 1, go to drawer 2, go to drawer 3, go to shelf 3, go to stoveburner 3, go to stoveburner 4, go to garbagecan 1, inventory, look
+Your task is to: get peppershaker
+2026-05-03 05:17:46,609 [INFO] src.rm.rm_llm_agent | ---------------------------------
+2026-05-03 05:17:47,752 [INFO] src.rm.rm_llm_agent | ---- LLM OUTPUT ----
+2026-05-03 05:17:47,752 [INFO] src.rm.rm_llm_agent | Expand:
+- control flow: sequence
+- subgoals: get peppershaker, go to drawer 1
+2026-05-03 05:17:47,752 [INFO] src.rm.rm_llm_agent | --------------------
+2026-05-03 05:17:47,752 [INFO] src.rm.alfworld_reactree | Expand: {'control_flow': 'sequence', 'conditions': ['get peppershaker', 'go to drawer 1']}
+2026-05-03 05:17:47,752 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [1/2] | depth=6 | subgoal='get peppershaker'
+2026-05-03 05:17:47,752 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [2/2] | depth=6 | subgoal='go to drawer 1'
+2026-05-03 05:17:47,752 [INFO] src.rm.alfworld_reactree | Max depth

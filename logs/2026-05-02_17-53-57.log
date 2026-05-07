@@ -1,0 +1,29 @@
+2026-05-02 17:54:00,062 [DEBUG] ai2thor.controller | /home/azureuser/.ai2thor/releases/thor-201909061227-Linux64/thor-201909061227-Linux64 exists - skipping download
+2026-05-02 17:54:12,210 [INFO] __main__ | Task          : put some peppershaker on drawer
+2026-05-02 17:54:12,210 [INFO] __main__ | Init obs      : -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a
+2026-05-02 17:54:12,210 [INFO] __main__ | Available cmds: ['go to fridge 1', 'go to cabinet 1', 'go to countertop 1', 'go to toaster 1', 'go to coffeemachine 1'] ...
+2026-05-02 17:54:12,213 [INFO] src.rm.alfworld_reactree | cur_step_id:1 | cur_decision_id: 1
+2026-05-02 17:54:12,213 [INFO] src.rm.alfworld_reactree | task_desc: put some peppershaker on drawer| task_type: pick_and_place_simple | current_obs: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+2026-05-02 17:54:12,213 [INFO] src.rm.alfworld_reactree | LLM reset | subgoal=put some peppershaker on drawer | messages: [{'role': 'system', 'content': 'You are a robot decision-making agent. For the given goal, choose exactly one of: Think, Act, or Expand.\n\nIf Think:\nThink: <one sentence of reasoning>\n\nIf Act:\nAct: <exact action from Available actions>\nUse "done" if the goal is achieved, "failure" if it cannot be completed.\n\nIf Expand:\nExpand:\n- control flow: <sequence | fallback | parallel>\n- subgoals: <subgoal1>, <subgoal2>, ...\n\nRules:\n- Always start your response with exactly "Think:", "Act:", or "Expand:" (colon required).\n- Output only the chosen block. No explanations, no extra text.\n- For Expand, list subgoal names only — do not describe or expand them further.\n- Control flow meanings: sequence (stop on first failure), fallback (stop on first success), parallel (all must succeed).\n'}, {'role': 'user', 'content': 'Current observation: -= Welcome to TextWorld, ALFRED! =-\n\nYou are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.\nYour current subgoal is to: put some peppershaker on drawer\nAvailable actions: go to fridge 1, go to cabinet 1, go to countertop 1, go to toaster 1, go to coffeemachine 1, go to countertop 2, go to cabinet 2, go to stoveburner 1, go to stoveburner 2, go to cabinet 3, go to cabinet 4, go to microwave 1, go to countertop 3, go to sink 1, go to sinkbasin 1, go to shelf 1, go to shelf 2, go to drawer 1, go to drawer 2, go to drawer 3, go to shelf 3, go to stoveburner 3, go to stoveburner 4, go to garbagecan 1, inventory, look'}]
+2026-05-02 17:54:13,876 [INFO] src.rm.alfworld_reactree | Expand: {'control_flow': 'sequence', 'conditions': ['go to drawer 3', 'put some peppershaker on drawer']}
+2026-05-02 17:54:13,876 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [1/2] | depth=2 | subgoal='go to drawer 3'
+2026-05-02 17:54:13,876 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [2/2] | depth=2 | subgoal='put some peppershaker on drawer'
+2026-05-02 17:54:13,876 [INFO] src.rm.alfworld_reactree | cur_step_id:1 | cur_decision_id: 2
+2026-05-02 17:54:13,876 [INFO] src.rm.alfworld_reactree | task_desc: go to drawer 3| task_type: pick_and_place_simple | current_obs: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+2026-05-02 17:54:13,876 [INFO] src.rm.alfworld_reactree | LLM continued | subgoal=go to drawer 3 | history_len=4
+2026-05-02 17:54:14,434 [INFO] src.rm.alfworld_reactree | Act: go to drawer 3
+2026-05-02 17:54:14,823 [INFO] src.rm.alfworld_reactree | You arrive at loc 19. The drawer 3 is closed. 
+2026-05-02 17:54:15,350 [INFO] src.rm.alfworld_reactree | Act: open drawer 3
+2026-05-02 17:54:15,573 [INFO] src.rm.alfworld_reactree | You open the drawer 3. The drawer 3 is open. In it, you see a pot 1, a pan 1, a vase 1, a papertowelroll 1, a stoveknob 1, a stoveknob 2, a stoveknob 3, a spoon 1, a stoveknob 4, a butterknife 1, a knife 2, a dishsponge 1, a fork 1, a knife 1, and a tomato 1.
+2026-05-02 17:54:16,209 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from inventory
+2026-05-02 17:54:16,210 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 17:54:17,588 [INFO] src.rm.alfworld_reactree | Expand: {'control_flow': 'sequence', 'conditions': ['go to drawer 1', 'put some peppershaker on drawer']}
+2026-05-02 17:54:17,588 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [1/2] | depth=4 | subgoal='go to drawer 1'
+2026-05-02 17:54:17,588 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [2/2] | depth=4 | subgoal='put some peppershaker on drawer'
+2026-05-02 17:54:17,588 [INFO] src.rm.alfworld_reactree | Max depth

@@ -20,10 +20,12 @@ class AlfWorldEnv:
         self.env = env_class(self.config, train_eval=split)
         self.env = self.env.init_env(batch_size=1)
         self.action_history = []
+        self.last_obs  = None
+        self.last_info = None
 
-        # if self.task_file:
-        #     self.set_task()
         self.init_obs, self.init_info = self.reset()
+        self.last_obs  = self.init_obs
+        self.last_info = self.init_info
 
     def set_task(self):
         if os.path.exists(self.traj_data_file):
@@ -39,7 +41,10 @@ class AlfWorldEnv:
 
     def step(self, action):
         self.action_history.append(action)
-        return self.env.step([action])
+        obs, scores, dones, infos = self.env.step([action])
+        self.last_obs  = obs[0] if isinstance(obs, list) else obs
+        self.last_info = infos
+        return obs, scores, dones, infos
 
     def clone(self):
         new_env = AlfWorldEnv(self.config_path, self.task_file)

@@ -1,0 +1,59 @@
+2026-05-02 18:05:11,829 [DEBUG] ai2thor.controller | /home/azureuser/.ai2thor/releases/thor-201909061227-Linux64/thor-201909061227-Linux64 exists - skipping download
+2026-05-02 18:05:24,129 [INFO] __main__ | Task          : put a peppershaker in drawer
+2026-05-02 18:05:24,130 [INFO] __main__ | Init obs      : -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a
+2026-05-02 18:05:24,130 [INFO] __main__ | Available cmds: ['go to fridge 1', 'go to cabinet 1', 'go to countertop 1', 'go to toaster 1', 'go to coffeemachine 1'] ...
+2026-05-02 18:05:24,130 [INFO] src.rm.alfworld_reactree | cur_step_id:1 | cur_decision_id: 1
+2026-05-02 18:05:24,131 [INFO] src.rm.alfworld_reactree | task_desc: put a peppershaker in drawer| task_type: pick_and_place_simple | current_obs: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+2026-05-02 18:05:24,131 [INFO] src.rm.alfworld_reactree | LLM reset | subgoal=put a peppershaker in drawer | messages: [{'role': 'system', 'content': 'You are a robot decision-making agent. For the given goal, choose exactly one of: Think, Act, or Expand.\n\nIf Think:\nThink: <one sentence of reasoning>\n\nIf Act:\nAct: <exact action from Available actions>\nUse "done" if the goal is achieved, "failure" if it cannot be completed.\n\nIf Expand:\nExpand:\n- control flow: <sequence | fallback | parallel>\n- subgoals: <subgoal1>, <subgoal2>, ...\n\nRules:\n- Always start your response with exactly "Think:", "Act:", or "Expand:" (colon required).\n- Output only the chosen block. No explanations, no extra text.\n- For Expand, list subgoal names only — do not describe or expand them further.\n- Control flow meanings: sequence (stop on first failure), fallback (stop on first success), parallel (all must succeed).\n'}, {'role': 'user', 'content': 'Current observation: -= Welcome to TextWorld, ALFRED! =-\n\nYou are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.\nYour current subgoal is to: put a peppershaker in drawer\nAvailable actions: go to fridge 1, go to cabinet 1, go to countertop 1, go to toaster 1, go to coffeemachine 1, go to countertop 2, go to cabinet 2, go to stoveburner 1, go to stoveburner 2, go to cabinet 3, go to cabinet 4, go to microwave 1, go to countertop 3, go to sink 1, go to sinkbasin 1, go to shelf 1, go to shelf 2, go to drawer 1, go to drawer 2, go to drawer 3, go to shelf 3, go to stoveburner 3, go to stoveburner 4, go to garbagecan 1, inventory, look'}]
+2026-05-02 18:05:25,957 [INFO] src.rm.alfworld_reactree | Expand: {'control_flow': 'sequence', 'conditions': ['get peppershaker', 'go to drawer 1', 'put peppershaker in drawer']}
+2026-05-02 18:05:25,957 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [1/3] | depth=2 | subgoal='get peppershaker'
+2026-05-02 18:05:25,957 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [2/3] | depth=2 | subgoal='go to drawer 1'
+2026-05-02 18:05:25,957 [INFO] src.rm.alfworld_reactree | Created AlfWorldAgentNode [3/3] | depth=2 | subgoal='put peppershaker in drawer'
+2026-05-02 18:05:25,957 [INFO] src.rm.alfworld_reactree | cur_step_id:1 | cur_decision_id: 2
+2026-05-02 18:05:25,958 [INFO] src.rm.alfworld_reactree | task_desc: get peppershaker| task_type: pick_and_place_simple | current_obs: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a fridge 1, a cabinet 1, a countertop 1, a toaster 1, a coffeemachine 1, a countertop 2, a cabinet 2, a stoveburner 1, a stoveburner 2, a cabinet 3, a cabinet 4, a microwave 1, a countertop 3, a sink 1, a sinkbasin 1, a shelf 1, a shelf 2, a drawer 1, a drawer 2, a drawer 3, a shelf 3, a stoveburner 3, a stoveburner 4, and a garbagecan 1.
+2026-05-02 18:05:25,958 [INFO] src.rm.alfworld_reactree | LLM continued | subgoal=get peppershaker | history_len=4
+2026-05-02 18:05:26,530 [INFO] src.rm.alfworld_reactree | Act: go to cabinet 1
+2026-05-02 18:05:26,925 [INFO] src.rm.alfworld_reactree | You arrive at loc 1. The cabinet 1 is closed. 
+2026-05-02 18:05:27,463 [INFO] src.rm.alfworld_reactree | Act: open cabinet 1
+2026-05-02 18:05:27,648 [INFO] src.rm.alfworld_reactree | You open the cabinet 1. The cabinet 1 is open. In it, you see a lettuce 1, and a plate 1.
+2026-05-02 18:05:28,377 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from cabinet 1
+2026-05-02 18:05:28,377 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:28,832 [INFO] src.rm.alfworld_reactree | Act: inventory
+2026-05-02 18:05:28,833 [INFO] src.rm.alfworld_reactree | You are not carrying anything.
+2026-05-02 18:05:29,480 [INFO] src.rm.alfworld_reactree | Act: go to drawer 1
+2026-05-02 18:05:29,692 [INFO] src.rm.alfworld_reactree | You arrive at loc 17. The drawer 1 is closed. 
+2026-05-02 18:05:30,318 [INFO] src.rm.alfworld_reactree | Act: open drawer 1
+2026-05-02 18:05:30,507 [INFO] src.rm.alfworld_reactree | You open the drawer 1. The drawer 1 is open. In it, you see a pot 1, a pan 1, a vase 1, a papertowelroll 1, a stoveknob 1, a stoveknob 2, a stoveknob 3, a spoon 1, a stoveknob 4, a butterknife 1, a dishsponge 1, a fork 1, a knife 1, and a tomato 1.
+2026-05-02 18:05:31,331 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from drawer 1
+2026-05-02 18:05:31,332 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:31,909 [INFO] src.rm.alfworld_reactree | Act: inventory
+2026-05-02 18:05:31,909 [INFO] src.rm.alfworld_reactree | You are not carrying anything.
+2026-05-02 18:05:32,811 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from drawer 1
+2026-05-02 18:05:32,813 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:33,457 [INFO] src.rm.alfworld_reactree | Act: inventory
+2026-05-02 18:05:33,457 [INFO] src.rm.alfworld_reactree | You are not carrying anything.
+2026-05-02 18:05:34,431 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from drawer 1
+2026-05-02 18:05:34,432 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:35,146 [INFO] src.rm.alfworld_reactree | Act: inventory
+2026-05-02 18:05:35,147 [INFO] src.rm.alfworld_reactree | You are not carrying anything.
+2026-05-02 18:05:36,190 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from drawer 1
+2026-05-02 18:05:36,192 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:37,150 [INFO] src.rm.alfworld_reactree | Act: go to cabinet 1
+2026-05-02 18:05:37,498 [INFO] src.rm.alfworld_reactree | You arrive at loc 1. The cabinet 1 is open. On the cabinet 1, you see a lettuce 1, and a plate 1.
+2026-05-02 18:05:38,592 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from cabinet 1
+2026-05-02 18:05:38,594 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:39,439 [INFO] src.rm.alfworld_reactree | Act: inventory
+2026-05-02 18:05:39,440 [INFO] src.rm.alfworld_reactree | You are not carrying anything.
+2026-05-02 18:05:40,598 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from cabinet 1
+2026-05-02 18:05:40,599 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:41,777 [INFO] src.rm.alfworld_reactree | Act: take peppershaker from cabinet 1
+2026-05-02 18:05:41,778 [INFO] src.rm.alfworld_reactree | Nothing happens.
+2026-05-02 18:05:42,678 [INFO] src.rm.alfworld_reactree | Act: inventory
+2026-05-02 18:05:42,679 [INFO] src.rm.alfworld_reactree | You are not carrying anything.
+2026-05-02 18:05:42,679 [INFO] src.rm.alfworld_reactree | Max decisions
