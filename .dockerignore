@@ -1,0 +1,14 @@
+# Keep the build context small and avoid baking secrets/large data into the image.
+# Code and data are mounted in at `docker run` time instead (see next steps).
+.git
+.env
+logs/
+resource/
+docs/
+alfworld/data/
+alfred/data/
+outputs/
+output/
+dataset/
+*.pyc
+__pycache__/

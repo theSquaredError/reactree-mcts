@@ -16,7 +16,8 @@ cd "$(dirname "$0")/.."
 
 EXP_TYPE="${1:-evaluate}"
 EVAL_SET="${2:-valid_seen}"
-MODEL="${MODEL:-meta-llama/Meta-Llama-3.1-8B-Instruct}"
+MODEL="${MODEL:-/data/muskan/comars_v1/LLama-3.1-8B-Instruct}"
+
 MCTS_BUDGET="${MCTS_BUDGET:-10}"
 MCTS_MAX_DEPTH="${MCTS_MAX_DEPTH:-12}"
 EVAL_PORTION="${EVAL_PORTION:-100}"

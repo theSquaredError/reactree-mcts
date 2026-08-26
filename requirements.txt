@@ -13,17 +13,21 @@ contourpy==1.0.5
 cryptography==41.0.2
 cycler==0.11.0
 einops==0.6.1
-Flask==1.1.2
+# Flask/Werkzeug pinned to 2.0.3, not older or newer: ai2thor's server.py subclasses
+# werkzeug.serving.WSGIRequestHandler and overrides run_wsgi() — this breaks under
+# Werkzeug 3.x, while Flask<2.1 crashes on import against Jinja2>=3.1 (needed by
+# transformers' apply_chat_template). 2.0.3 is the verified-working middle ground.
+Flask==2.0.3
 fonttools==4.25.0
 guidance==0.1.15
 hydra-core==1.3.2
 importlib-resources==5.2.0
 ipdb==0.13.13
-itsdangerous==1.1.0
-Jinja2==2.11.3
+itsdangerous==2.0.1
+Jinja2==3.1.4
 kiwisolver==1.4.4
 lit==15.0.7
-MarkupSafe==1.1.1
+MarkupSafe==2.1.5
 matplotlib==3.7.1
 msal==1.23.0
 multidict==6.0.4
@@ -50,7 +54,10 @@ toml==0.10.2
 tornado==6.2
 transformers==4.44.1
 vocab==0.0.5
-Werkzeug==1.0.1
+Werkzeug==2.0.3
 wheel==0.38.4
 yarl==1.9.2
 wandb==0.16.6
+termcolor==3.3.0
+textworld==1.7.0
+tqdm

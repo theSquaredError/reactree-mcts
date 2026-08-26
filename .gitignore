@@ -23,3 +23,13 @@ dataset/*
 
 # envs
 .newenv/*
+.env
+
+# large model weights
+data/detectors/*.pth
+
+# large downloadable dataset (fetch via alfworld-download.py)
+data/json_2.1.1/
+
+# logs
+logs/mcts_log/mcts_datagen/log/*.log

@@ -1,0 +1,25 @@
+services:
+  reactree:
+    build: .
+    image: reactree-mcts
+    container_name: reactree-dev
+    stdin_open: true   # keeps stdin open, equivalent to `docker run -i`
+    tty: true           # allocates a terminal, equivalent to `docker run -t`
+    shm_size: "8gb"
+    env_file:
+      - .env
+    volumes:
+      - .:/workspace
+      - /data/muskan/comars_v1/LLama-3.1-8B-Instruct:/data/muskan/comars_v1/LLama-3.1-8B-Instruct:ro
+      - alfworld-data:/root/.cache/alfworld
+    working_dir: /workspace
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["1"]   # change this to whichever GPU has room (check nvidia-smi first)
+              capabilities: ["gpu"]
+
+volumes:
+  alfworld-data:

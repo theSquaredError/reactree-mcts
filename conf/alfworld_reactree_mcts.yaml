@@ -11,7 +11,9 @@ defaults:
 out_dir: ${hydra:run.dir}
 
 llm_agent:
-  model_name: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
+  # model_name: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
+  model_name: '/data/muskan/comars_v1/LLama-3.1-8B-Instruct'
+
   agent_type: 'reactexpand'
   ic_ex_select_type: 'simple_static'
   working_memory: False
@@ -29,7 +31,7 @@ prompt:
 alfworld:
   # Leave data_root empty to auto-detect from alfworld.info.ALFWORLD_DATA
   data_root: ''
-  config_path: 'config/base_config.yaml'
+  config_path: 'conf/base_config.yaml'
   eval_portion_in_percent: 100
   random_seed_for_eval_subset: 1
 

@@ -20,10 +20,13 @@ import sys
 from collections import defaultdict
 from os.path import join as pjoin
 
-# Keep src/ on sys.path even after Hydra changes the working directory.
+# Keep src/ and the repo root (for top-level packages like alfworld/) on
+# sys.path even after Hydra changes the working directory.
 _SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-if _SRC_DIR not in sys.path:
-    sys.path.insert(0, _SRC_DIR)
+_REPO_ROOT = os.path.dirname(_SRC_DIR)
+for _path in (_SRC_DIR, _REPO_ROOT):
+    if _path not in sys.path:
+        sys.path.insert(0, _path)
 
 logger = logging.getLogger(__name__)
 
@@ -124,7 +127,7 @@ def _main_impl(cfg) -> None:
     mcts_max_depth = int(getattr(mcts_cfg, "mcts_max_depth", 4))
 
     alfworld_cfg = getattr(cfg, "alfworld", None)
-    alfworld_config_path = getattr(alfworld_cfg, "config_path", "config/base_config.yaml")
+    alfworld_config_path = getattr(alfworld_cfg, "config_path", "conf/base_config.yaml")
 
     data_root = getattr(alfworld_cfg, "data_root", "")
     if not data_root:
